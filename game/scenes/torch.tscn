@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/ground/torch.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.90716, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.47
+emission_shape = 2
+emission_box_extents = Vector3( 1.898, 0.523, 1.417 )
+gravity = Vector3( 0, 4.832, 0 )
+angular_velocity = 49.66
+angular_velocity_random = 0.22
+scale = 5.08
+scale_random = 0.44
+scale_curve = SubResource( 3 )
+color = Color( 0.862745, 0.686275, 0.0823529, 1 )
+hue_variation_random = 0.1
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="torch" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="torch"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002666, 1.9147, -0.999934 )
+light_color = Color( 0.980392, 0.811765, 0.298039, 1 )
+omni_range = 6.4
+omni_attenuation = 1.27456
+
+[node name="Particles" type="Particles" parent="torch/OmniLight"]
+transform = Transform( 0.0588478, 0, 0, 0, 0.14219, 0, 0, 0, 0.0588478, 0, -0.303099, 0.544108 )
+material_override = SubResource( 1 )
+cast_shadow = 0
+amount = 40
+lifetime = 1.65
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
