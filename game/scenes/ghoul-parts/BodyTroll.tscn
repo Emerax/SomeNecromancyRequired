@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ghoul-parts/sprites/troll_reference.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ghoul-parts/sprites/troll-body.png" type="Texture" id=5]
+
+[node name="BodyTroll" type="Spatial"]
+
+[node name="BodyTrollSprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19591, 0 )
+alpha_cut = 2
+texture = ExtResource( 5 )
+
+[node name="ArmPoint Right" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579873, 2.47009, 0.02 )
+
+[node name="HeadPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186, 2.87591, 0.0100002 )
+
+[node name="LegPoint Right" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16031, 1.59593, -0.0100002 )
+
+[node name="LegPoint Left" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23969, 1.81993, -0.02 )
+
+[node name="ArmPoint Left" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338127, 2.66009, -0.0300002 )
+
+[node name="Troll Reference" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0348229, 2.19591, -0.711182 )
+visible = false
+alpha_cut = 2
+texture = ExtResource( 4 )
