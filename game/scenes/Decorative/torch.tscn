@@ -43,7 +43,6 @@ material/0 = null
 [node name="OmniLight" type="OmniLight" parent="torch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002666, 1.9147, -0.999934 )
 light_color = Color( 0.980392, 0.713726, 0.298039, 1 )
-shadow_enabled = true
 omni_range = 6.4
 omni_attenuation = 1.27456
 script = ExtResource( 2 )
