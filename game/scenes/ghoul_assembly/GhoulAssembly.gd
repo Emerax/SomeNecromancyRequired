@@ -21,8 +21,6 @@ var parts: Array = [
 	"LEG_TROLL"
 ]
 
-signal mouse_input
-
 onready var packedPartScenes = {
 	"ARM_DRAKE": preload("res://scenes/ghoul-parts/ArmDrake.tscn"),
 	"ARM_SCORPION":preload("res://scenes/ghoul-parts/ArmScorpion.tscn"),
@@ -77,22 +75,18 @@ func _on_part_select_event(part):
 	if selected_part != null:
 		selected_part.onDeselect()
 		if selected_part == part:
-			print("Unselecting part")
 			selected_part = null
 		else:
-			print("Selecting other part")
 			selected_part = part
 			selected_part.onSelect()
 	else:
-		print("Selecting part")
 		selected_part = part
 		selected_part.onSelect()
 
-func _on_AssemblyArea_input_event(camera, event, click_position, click_normal, shape_idx):
+func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if selected_part != null:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT and event.pressed:
 				if try_add_part(selected_part.partType):
-					print("Adding part")
 					selected_part.onAdd()
 					selected_part = null #Clear selection when adding

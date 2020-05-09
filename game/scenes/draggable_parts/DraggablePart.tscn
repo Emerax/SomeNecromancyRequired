@@ -16,5 +16,6 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
 modulate = Color( 1, 0, 0, 1 )
 opacity = 0.5
+billboard = 1
 texture = ExtResource( 3 )
 [connection signal="input_event" from="PartSprite/DragDetector" to="." method="_on_DragDetector_input_event"]

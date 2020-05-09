@@ -28,7 +28,7 @@ var speed = 5
 var since_last_attack = 0
 var next_in_line = null
 
-var grid: Grid = null
+var combat: Combat = null
 
 var projectile_template = preload("../Fireball.tscn")
 
@@ -37,9 +37,9 @@ var state = State.Walking
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
-func init(transform, lane, grid, next_in_line):
+func init(transform, lane, combat, next_in_line):
 	self.lane = lane
-	self.grid = grid
+	self.combat = combat
 	self.transform = transform
 	self.next_in_line = next_in_line
 
@@ -56,7 +56,7 @@ func _process(delta):
 	var can_move: bool = true
 	# This is only ranged attacks
 	# Check if there is something to attack and if the cooldown is over
-	var target = self.grid.get_first_defender(self.lane)
+	var target = self.combat.get_first_defender(self.lane)
 	if target != null and kind.is_in_range(target):
 		if state == State.AttackStart:
 			if not kind.is_animating():
