@@ -1,9 +1,10 @@
 extends Spatial
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var accessories = [
+		preload("accessories/lantern.tscn"),
+		preload("../Decorative/torch.tscn"),
+	]
 
 var attack_range = 50
 
@@ -14,7 +15,8 @@ onready var animator = $wizard/AnimationPlayer;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var accessory = accessories[rand_range(0, accessories.size())]
+	self.find_node("off_hand").add_child(accessory.instance())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

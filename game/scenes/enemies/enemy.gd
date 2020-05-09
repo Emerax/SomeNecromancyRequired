@@ -1,8 +1,13 @@
 extends Spatial
 
 
-var kind_preload = preload("WizardType.tscn")
 var kind;
+
+# Plural of kind,d clearly
+var kinderen = [
+		preload("AxeDudeKind.tscn"),
+		preload("WizardKind.tscn"),
+	]
 
 
 enum State {
@@ -40,6 +45,7 @@ func init(transform, lane, grid, next_in_line):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var kind_preload = kinderen[rand_range(0, kinderen.size())]
 	kind = kind_preload.instance()
 	add_child(kind)
 
