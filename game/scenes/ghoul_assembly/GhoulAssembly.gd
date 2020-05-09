@@ -21,8 +21,6 @@ var parts: Array = [
 	"LEG_TROLL"
 ]
 
-signal mouse_input
-
 onready var packedPartScenes = {
 	"ARM_DRAKE": preload("res://scenes/ghoul-parts/ArmDrake.tscn"),
 	"ARM_SCORPION":preload("res://scenes/ghoul-parts/ArmScorpion.tscn"),
@@ -88,7 +86,7 @@ func _on_part_select_event(part):
 		selected_part = part
 		selected_part.onSelect()
 
-func _on_AssemblyArea_input_event(camera, event, click_position, click_normal, shape_idx):
+func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if selected_part != null:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT and event.pressed:

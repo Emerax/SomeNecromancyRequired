@@ -17,6 +17,7 @@ func _ready():
 	selectionSprite.visible = false
 	var camera_rotation = get_viewport().get_camera().global_transform.basis;
 	global_transform.basis = camera_rotation
+# warning-ignore:return_value_discarded
 	connect("select_part", assembly, "_on_part_select_event")
 
 # warning-ignore:shadowed_variable
