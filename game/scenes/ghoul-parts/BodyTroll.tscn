@@ -11,36 +11,39 @@
 transform = Transform( 0.999997, 0.00259679, 0, -0.00259679, 0.999997, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
-[node name="BodyTrollSprite" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19591, 0 )
+[node name="Offset" type="Spatial" parent="."]
+transform = Transform( 1, -4.65661e-10, 0, 4.65661e-10, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="BodyTrollSprite" type="Sprite3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, 0.004, 0.59991, 0 )
 alpha_cut = 2
 texture = ExtResource( 5 )
 
-[node name="ArmPoint Right" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579873, 2.47009, 0.02 )
+[node name="ArmPoint Right" type="Position3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, -0.575873, 0.87409, 0.02 )
 script = ExtResource( 1 )
 type = 0
 
-[node name="HeadPoint" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186, 2.87591, 0.0100002 )
+[node name="HeadPoint" type="Position3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, -0.182, 1.27991, 0.0100002 )
 script = ExtResource( 1 )
 type = 1
 
-[node name="LegPoint Right" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16031, 1.59593, -0.0100002 )
+[node name="LegPoint Right" type="Position3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, -0.15631, -7.00951e-05, -0.0100002 )
 script = ExtResource( 1 )
 
-[node name="LegPoint Left" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23969, 1.81993, -0.02 )
+[node name="LegPoint Left" type="Position3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, 0.24369, 0.22393, -0.02 )
 script = ExtResource( 1 )
 
-[node name="ArmPoint Left" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338127, 2.66009, -0.0300002 )
+[node name="ArmPoint Left" type="Position3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, 0.342127, 1.06409, -0.0300002 )
 script = ExtResource( 1 )
 type = 0
 
-[node name="Troll Reference" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0348229, 2.19591, -0.711182 )
+[node name="Troll Reference" type="Sprite3D" parent="Offset"]
+transform = Transform( 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, 0, 1, 0.0388229, 0.59991, -0.711182 )
 visible = false
 alpha_cut = 2
 texture = ExtResource( 4 )

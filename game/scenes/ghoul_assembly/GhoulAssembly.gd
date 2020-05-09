@@ -41,14 +41,21 @@ onready var packedPartScenes = {
 	"LEG_TROLL": preload("res://scenes/ghoul-parts/LegTroll.tscn")
 }
 
+onready var leg_lenghts = {
+	"LEG_DRAKE": 1.552,
+	"LEG_HORSE": 1.975,
+	"LEG_SCORPION": 1.147,
+	"LEG_TROLL": 1.596
+}
+
 var ghoul_in_progress
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	try_add_part("LEG_DRAKE")
-	try_add_part("BODY_TROLL")
+	try_add_part("BODY_SCORPION")
 	try_add_part("HEAD_HORSE")
-	try_add_part("LEG_SCORPION")
+	try_add_part("LEG_TROLL")
 	try_add_part("ARM_DRAKE")
 
 func try_add_part(part_name):
@@ -67,7 +74,8 @@ func try_add_part(part_name):
 		elif "HEAD" in part_name:
 			return ghoul_in_progress.try_add_head(part)
 		elif "LEG" in part_name:
-			return ghoul_in_progress.try_add_legs(part)
+			assert(leg_lenghts.has(part_name))
+			return ghoul_in_progress.try_add_legs(part, leg_lenghts[part_name])
 	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

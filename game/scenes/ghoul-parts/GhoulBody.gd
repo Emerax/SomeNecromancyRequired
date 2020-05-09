@@ -5,7 +5,9 @@ var head_points = []
 var leg_points = []
 
 func _ready():
-	for maybe_point in get_children():
+	var recursive_children = []
+	get_recusive_children(self, recursive_children)
+	for maybe_point in recursive_children:
 		if maybe_point.has_method("get_limb_point_type"):
 			var point = maybe_point
 			var point_type = point.get_limb_point_type()
@@ -16,6 +18,12 @@ func _ready():
 				head_points.append(point)
 			elif point_type == point.LIMBTYPE.leg:
 				leg_points.append(point)
+
+func get_recusive_children(node, result):
+	for child in node.get_children():
+		result.append(child)
+		if child.get_child_count() > 0:
+			get_recusive_children(child, result)
 
 
 func has_free_points(point_array):
@@ -49,9 +57,12 @@ func try_add_arms(arm):
 func try_add_head(head):
 	return try_add_limbs(head, head_points)
 
-func try_add_legs(leg):
-	return try_add_limbs(leg, leg_points)
-
+func try_add_legs(leg, leg_length):
+	if try_add_limbs(leg, leg_points):
+		$Offset.transform.origin.y = leg_length
+		return true
+	else:
+		return false
 
 func remove_limbs(point_array):
 	for point in point_array:
