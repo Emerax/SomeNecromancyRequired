@@ -8,14 +8,16 @@
 script = ExtResource( 2 )
 
 [node name="PartSprite" type="Sprite3D" parent="."]
+alpha_cut = 2
 
 [node name="DragDetector" parent="PartSprite" instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="SelectionSprite" type="Sprite3D" parent="."]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, -0.0798381 )
 modulate = Color( 1, 0, 0, 1 )
 opacity = 0.5
 billboard = 1
+alpha_cut = 2
 texture = ExtResource( 3 )
 [connection signal="input_event" from="PartSprite/DragDetector" to="." method="_on_DragDetector_input_event"]
