@@ -67,4 +67,4 @@ light_indirect_energy = 0.58
 shadow_enabled = true
 
 [node name="CombatScene" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370865, -0.0907173, 0.0321026 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370865, -0.0907173, 47.7743 )
