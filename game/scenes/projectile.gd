@@ -33,5 +33,4 @@ func _process(delta):
 	self.initial_velocity_contribution = max(0, self.initial_velocity_contribution - 0.2 * delta)
 	var velocity = pos_diff.normalized() * speed + \
 		(self.initial_velocity * self.initial_velocity_contribution)
-
 	self.transform = self.transform.translated(velocity * delta)
