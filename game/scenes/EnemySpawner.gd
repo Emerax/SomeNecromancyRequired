@@ -1,16 +1,17 @@
 extends Spatial
 
-var lane = 0
+export var lane = 0;
 var template = preload("enemy.tscn")
 
+var grid;
+
 var since_last_spawn = 0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.grid = get_tree().get_root().find_node("Grid", true, false)
+	print(self.grid)
 	pass # Replace with function body.
 
 
@@ -19,7 +20,7 @@ func _process(delta):
 	self.since_last_spawn += delta
 	if self.since_last_spawn > 3:
 		var new_enemy = template.instance()
-		new_enemy.init(self.transform)
+		new_enemy.init(self.transform, lane, self.grid)
 		# add_child(new_enemy)
 		# new_enemy.set_owner(get_tree().get_root())
 		get_tree().get_root().call_deferred("add_child", new_enemy)

@@ -34,7 +34,7 @@ hue_variation_random = 0.1
 
 [sub_resource type="QuadMesh" id=5]
 
-[node name="Spatial" type="Spatial"]
+[node name="Torch" type="Spatial"]
 
 [node name="torch" type="MeshInstance" parent="."]
 mesh = ExtResource( 1 )
