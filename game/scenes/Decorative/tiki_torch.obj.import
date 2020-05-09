@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tiki_torch.obj-8d4971ca751ed7eda9ef1fcf6732aac4.mesh"
+
+[deps]
+
+files=[ "res://.import/tiki_torch.obj-8d4971ca751ed7eda9ef1fcf6732aac4.mesh" ]
+
+source_file="res://scenes/Decorative/tiki_torch.obj"
+dest_files=[ "res://.import/tiki_torch.obj-8d4971ca751ed7eda9ef1fcf6732aac4.mesh", "res://.import/tiki_torch.obj-8d4971ca751ed7eda9ef1fcf6732aac4.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
