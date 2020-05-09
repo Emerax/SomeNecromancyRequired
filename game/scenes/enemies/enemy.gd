@@ -1,6 +1,15 @@
 extends Spatial
 
 
+enum State {
+	# Currently walking
+	Walking
+	# Pre-attack animation
+	AttackStart,
+	# Post attack animation
+	AttackEnd
+}
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
