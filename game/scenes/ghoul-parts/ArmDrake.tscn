@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ghoul-parts/sprites/drake-arm.png" type="Texture" id=1]
+
+[node name="ArmDrake" type="Spatial"]
+
+[node name="ArmDrakeSprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.76644, 0.111178, 0 )
+alpha_cut = 2
+texture = ExtResource( 1 )

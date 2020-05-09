@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/drake_reference.png-e80c12d2d17b0b6ed219dd46f90c5ced.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://scenes/ghoul-parts/sprites/drake_reference.png"
+dest_files=[ "res://.import/drake_reference.png-e80c12d2d17b0b6ed219dd46f90c5ced.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

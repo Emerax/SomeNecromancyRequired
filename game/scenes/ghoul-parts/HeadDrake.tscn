@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ghoul-parts/sprites/drake-head.png" type="Texture" id=1]
+
+[node name="HeadDrake" type="Spatial"]
+
+[node name="HeadDrakeSprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.519741, 0.114439, 0 )
+alpha_cut = 2
+texture = ExtResource( 1 )
