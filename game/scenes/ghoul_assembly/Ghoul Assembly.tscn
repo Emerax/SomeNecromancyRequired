@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/ghoul_assembly/GhoulAssembly.gd" type="Script" id=1]
 
 [sub_resource type="CylinderMesh" id=1]
+
+[sub_resource type="CylinderShape" id=2]
+height = 0.511921
 
 [node name="Ghoul Assembly" type="Spatial"]
 script = ExtResource( 1 )
@@ -11,3 +14,10 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, 0.25, 0 )
 mesh = SubResource( 1 )
 material/0 = null
+
+[node name="AssemblyArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="AssemblyArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242127, 0 )
+shape = SubResource( 2 )
+[connection signal="input_event" from="AssemblyArea" to="." method="_on_AssemblyArea_input_event"]
