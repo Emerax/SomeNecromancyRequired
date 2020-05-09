@@ -1,0 +1,39 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/ghoul-parts/GhoulConnectionTest.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ghoul-parts/LegHorse.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ghoul-parts/BodyTroll.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ghoul-parts/LegTroll.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ghoul-parts/BodyHorse.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ghoul-parts/HeadHorse.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ghoul-parts/ArmDrake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ghoul-parts/HeadDrake.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ghoul-parts/BodyDrake.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ghoul-parts/HeadTroll.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/ghoul-parts/ArmTroll.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ghoul-parts/LegDrake.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/ghoul-parts/BodyScorpion.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/ghoul-parts/HeadScorpion.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/ghoul-parts/LegScorpion.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/ghoul-parts/ArmScorpion.tscn" type="PackedScene" id=16]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+body_troll = ExtResource( 3 )
+body_horse = ExtResource( 5 )
+body_drake = ExtResource( 9 )
+body_scorpion = ExtResource( 13 )
+arm_troll = ExtResource( 11 )
+arm_drake = ExtResource( 7 )
+arm_scorpion = ExtResource( 16 )
+head_troll = ExtResource( 10 )
+head_horse = ExtResource( 6 )
+head_drake = ExtResource( 8 )
+head_scorpion = ExtResource( 14 )
+leg_troll = ExtResource( 4 )
+leg_horse = ExtResource( 2 )
+leg_drake = ExtResource( 12 )
+leg_scorpion = ExtResource( 15 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95277, 1.50265, 8.02117 )

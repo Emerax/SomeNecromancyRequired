@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://scenes/ghoul-parts/GhoulBody.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ghoul-parts/LimbPoint.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ghoul-parts/sprites/scorption-body.png" type="Texture" id=4]
 [ext_resource path="res://scenes/ghoul-parts/sprites/scorpion_reference.png" type="Texture" id=5]
 
 [node name="BodyScorpion" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="BodyScorpionSprite" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0676935, 2.54326, 0 )
@@ -12,18 +15,26 @@ texture = ExtResource( 4 )
 
 [node name="LegPoint Right" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148961, 1.14666, 0.0199995 )
+script = ExtResource( 2 )
 
 [node name="ArmPoint Left" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05332, 1.03626, 0.0299997 )
+script = ExtResource( 2 )
+type = 0
 
 [node name="HeadPoint" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.961725, 1.43851, 0.00999928 )
+script = ExtResource( 2 )
+type = 1
 
 [node name="ArmPoint Right" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36192, 1.20835, -0.0200005 )
+script = ExtResource( 2 )
+type = 0
 
 [node name="LegPoint Left" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365743, 1.33635, -0.0100002 )
+script = ExtResource( 2 )
 
 [node name="Scorpion Reference" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287934, 2.1952, -0.5 )
