@@ -42,7 +42,8 @@ func createRandomPart():
 	var partType = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
 	var newPartSprite = packedSpriteScenes[partType]
 	var newPart: Spatial = packed_part.instance()
-	newPart.initialize(newPartSprite, partType, ghoulAssemblyPath)
+	var ghoulAssembly = get_node(ghoulAssemblyPath)
+	newPart.initialize(newPartSprite, partType, ghoulAssembly)
 	get_tree().root.call_deferred("add_child", newPart)
 	return newPart
 
