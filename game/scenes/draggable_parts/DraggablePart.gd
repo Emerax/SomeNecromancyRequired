@@ -11,11 +11,9 @@ var dragged: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.texture = renderSprite
+	var camera_rotation = get_viewport().get_camera().global_transform.basis;
+	global_transform.basis = camera_rotation
 	assembly.connect("mouse_input", self, "_on_Assembly_mouse_input_event")
-
-func _process(_delta):
-	var cameraPos: Vector3 = get_viewport().get_camera().get_global_transform().origin
-	sprite.look_at(cameraPos, Vector3(0, 1, 0))
 
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
