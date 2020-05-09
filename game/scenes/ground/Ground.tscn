@@ -67,4 +67,8 @@ light_indirect_energy = 0.58
 shadow_enabled = true
 
 [node name="CombatScene" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370865, -0.0907173, 47.7743 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370865, -0.0907173, 45.1476 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.00086e-08, 0.402795, -0.91529, 1.76067e-08, 0.91529, 0.402795, 1, 1.77636e-15, -4.37114e-08, -34.8023, 24.9112, 36.7197 )
+far = 1184.4
