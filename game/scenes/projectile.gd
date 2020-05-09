@@ -21,6 +21,7 @@ func init(target, position, initial_velocity, dmg):
 	self.damage = dmg
 
 	self.particles = get_node(@"Particles")
+	add_child(self.remove_timer)
 	self.remove_timer.wait_time = self.particles.lifetime
 	self.remove_timer.connect("timeout", self, "_on_Timer_timeout")
 

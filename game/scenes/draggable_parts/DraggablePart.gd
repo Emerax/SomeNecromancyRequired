@@ -38,6 +38,7 @@ func onAdd():
 	self.queue_free()
 
 func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
+	print("Hello?")
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("select_part", self)
