@@ -20,6 +20,11 @@ onready var packedSpriteScenes = {
 	"LEG_TROLL": preload("res://scenes/ghoul-parts/sprites/troll-leg.png")
 }
 
+var arm_types = []
+var body_types = []
+var head_types = []
+var leg_types = []
+
 onready var dropOffs = [$Dropoff1, $Dropoff2, $Dropoff3, $Dropoff4, $Dropoff5]
 
 onready var packed_part = preload("res://scenes/draggable_parts/DraggablePart.tscn")
@@ -30,16 +35,26 @@ var first = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	
+	rng.randomize()
+	for part_name in packedSpriteScenes.keys():
+		if "ARM" in part_name:
+			arm_types.append(part_name)
+		elif "BODY" in part_name:
+			body_types.append(part_name)
+		elif "HEAD" in part_name:
+			head_types.append(part_name)
+		elif "LEG" in part_name:
+			leg_types.append(part_name)
+		else:
+			assert(false)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if first && get_node(ghoulAssemblyPath):
 		fillDropOffs()
 		first = false
 
-func createRandomPart():
-	var partType = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
+func create_part(partType):
 	var newPartSprite = packedSpriteScenes[partType]
 	var newPart: Spatial = packed_part.instance()
 	var ghoulAssembly = get_node(ghoulAssemblyPath)
@@ -48,6 +63,19 @@ func createRandomPart():
 	return newPart
 
 func fillDropOffs():
+	var seeded_parts = []
+	seeded_parts.append(arm_types[rng.randi() % arm_types.size()])
+	seeded_parts.append(body_types[rng.randi() % body_types.size()])
+	seeded_parts.append(head_types[rng.randi() % head_types.size()])
+	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
+	seeded_parts.shuffle()
+	
 	for dropOff in dropOffs:
-		var newDraggablePart = createRandomPart()
-		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 1.5, 0))
+		var part_type
+		if !seeded_parts.empty():
+			part_type = seeded_parts.pop_back()
+		else:
+			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
+		
+		var newDraggablePart = create_part(part_type)
+		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.0, 0))
