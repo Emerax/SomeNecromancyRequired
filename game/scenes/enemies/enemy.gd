@@ -1,7 +1,8 @@
 extends Spatial
 
 
-var kind_preload = preload("WizardType.tscn")
+# var kind_preload = preload("WizardType.tscn")
+var kind_preload = preload("AxeDudeKind.tscn")
 var kind;
 
 
