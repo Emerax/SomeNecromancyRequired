@@ -3,7 +3,7 @@ extends Spatial
 
 var target;
 var initial_velocity: Vector3;
-var speed = 10;
+var speed = 15;
 var initial_velocity_contribution = 1;
 
 

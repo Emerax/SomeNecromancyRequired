@@ -6,7 +6,7 @@ extends Spatial
 # var b = "text"
 
 var lane = 0
-var speed = 3
+var speed = 5
 var since_last_attack = 0
 var next_in_line = null
 

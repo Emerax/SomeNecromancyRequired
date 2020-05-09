@@ -13,17 +13,19 @@ emission_on_uv2 = false
 
 [node name="CombatScene" type="Spatial"]
 
-[node name="EnemySpawner" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.1237 )
+[node name="Spawners" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73.3735 )
+
+[node name="EnemySpawner" type="Spatial" parent="Spawners"]
 script = ExtResource( 2 )
 lane = 1
 
-[node name="EnemySpawner2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 47.124 )
+[node name="EnemySpawner2" type="Spatial" parent="Spawners"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
 script = ExtResource( 2 )
 
-[node name="EnemySpawner3" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 47.124 )
+[node name="EnemySpawner3" type="Spatial" parent="Spawners"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
 script = ExtResource( 2 )
 lane = 2
 

@@ -21,7 +21,7 @@ func _process(delta):
 	if self.since_last_spawn > 3:
 		var new_enemy = template.instance()
 		print(self.lane)
-		new_enemy.init(self.transform, self.lane, self.grid, self.last_spawn)
+		new_enemy.init(get_global_transform(), self.lane, self.grid, self.last_spawn)
 		# add_child(new_enemy)
 		# new_enemy.set_owner(get_tree().get_root())
 		get_tree().get_root().call_deferred("add_child", new_enemy)
