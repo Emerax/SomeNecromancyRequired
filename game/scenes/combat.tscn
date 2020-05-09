@@ -17,19 +17,15 @@ emission_on_uv2 = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.1237 )
 script = ExtResource( 2 )
 lane = 1
-grid = null
 
 [node name="EnemySpawner2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 47.124 )
 script = ExtResource( 2 )
-lane = null
-grid = null
 
 [node name="EnemySpawner3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 47.124 )
 script = ExtResource( 2 )
 lane = 2
-grid = null
 
 [node name="Grid" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9882 )

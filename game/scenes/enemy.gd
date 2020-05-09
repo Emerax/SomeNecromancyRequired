@@ -14,6 +14,7 @@ var grid
 var projectile_template = preload("Fireball.tscn")
 
 func init(transform, lane, grid):
+	self.lane = lane
 	self.grid = grid
 	self.transform = transform
 
