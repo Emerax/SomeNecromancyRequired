@@ -20,11 +20,6 @@ func init(transform, lane, grid, next_in_line):
 	self.transform = transform
 	self.next_in_line = next_in_line
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	since_last_attack += delta

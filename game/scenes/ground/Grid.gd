@@ -36,8 +36,7 @@ func add_ghoul(lane: int, column: int):
 
 func remove_ghoul(lane: int, column: int):
 	if ghouls[lane][column] != null:
-		print("Kill ghoul at (", lane, ", ", column, ") pls")
-		# queue_free()
+		remove_child(ghouls[lane][column])
 	ghouls[lane][column] = null
 
 
