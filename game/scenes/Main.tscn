@@ -7,12 +7,13 @@
 [node name="Main" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-07, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 8.14603e-08, -1.41093e-07, -33.0352, 11.2092, 13.053 )
+transform = Transform( -1.62921e-07, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 8.14605e-08, -1.41094e-07, -29.0352, 11.2092, 13.053 )
 
 [node name="Ground" parent="." instance=ExtResource( 2 )]
 
 [node name="Ghoul Assembly" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 13 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, 13 )
 
 [node name="PartDelivery" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 13 )
 ghoulAssemblyPath = NodePath("../Ghoul Assembly")
