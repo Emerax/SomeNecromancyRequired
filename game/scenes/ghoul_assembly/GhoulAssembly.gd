@@ -50,13 +50,7 @@ onready var leg_lenghts = {
 
 var ghoul_in_progress
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	try_add_part("LEG_DRAKE")
-	try_add_part("BODY_SCORPION")
-	try_add_part("HEAD_HORSE")
-	try_add_part("LEG_TROLL")
-	try_add_part("ARM_DRAKE")
+var selected_part
 
 func try_add_part(part_name):
 	assert(packedPartScenes.has(part_name))
@@ -79,10 +73,26 @@ func try_add_part(part_name):
 			return ghoul_in_progress.try_add_legs(part, leg_lenghts[part_name])
 	return false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_part_select_event(part):
+	if selected_part != null:
+		selected_part.onDeselect()
+		if selected_part == part:
+			print("Unselecting part")
+			selected_part = null
+		else:
+			print("Selecting other part")
+			selected_part = part
+			selected_part.onSelect()
+	else:
+		print("Selecting part")
+		selected_part = part
+		selected_part.onSelect()
 
-func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
-	if event is InputEventMouseButton:
-		emit_signal("mouse_input", event)
+func _on_AssemblyArea_input_event(camera, event, click_position, click_normal, shape_idx):
+	if selected_part != null:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT and event.pressed:
+				if try_add_part(selected_part.partType):
+					print("Adding part")
+					selected_part.onAdd()
+					selected_part = null #Clear selection when adding

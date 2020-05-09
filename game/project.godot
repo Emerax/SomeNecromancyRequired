@@ -10,24 +10,18 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Spatial",
-"class": "Ghoul",
-"language": "GDScript",
-"path": "res://scenes/ghoul/Ghoul.gd"
-}, {
-"base": "Spatial",
 "class": "Grid",
 "language": "GDScript",
 "path": "res://scenes/ground/Grid.gd"
 } ]
 _global_script_class_icons={
-"Ghoul": "",
 "Grid": ""
 }
 
 [application]
 
 config/name="SomeNecromancyRequired"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/ground/Ground.tscn"
 config/icon="res://icon.png"
 
 [rendering]

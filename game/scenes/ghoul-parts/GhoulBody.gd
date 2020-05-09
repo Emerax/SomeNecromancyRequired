@@ -27,6 +27,8 @@ func get_recusive_children(node, result):
 
 
 func has_free_points(point_array):
+	if point_array.empty():
+		return false
 	for point in point_array:
 		if point.has_method("has_limb"):
 			if point.has_limb():
