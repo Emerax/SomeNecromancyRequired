@@ -8,9 +8,9 @@ extends Spatial
 var lane = 0
 var speed = 5
 var since_last_attack = 0
-var next_in_line = null
+var next_in_line: Ghoul = null
 
-var grid
+var grid: Grid = null
 
 var projectile_template = preload("../Fireball.tscn")
 
@@ -27,7 +27,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
 	since_last_attack += delta
 
 	var can_move: bool = true
@@ -37,8 +36,14 @@ func _process(delta):
 	if target != null:
 		if since_last_attack > 1:
 			since_last_attack = 0;
+			var damage = 1
 			var projectile = projectile_template.instance()
-			projectile.init(target, self.get_global_transform(), Vector3(0, 3, 0))
+			projectile.init(
+				target,
+				self.get_global_transform().origin,
+				Vector3(0, 3, 0),
+				damage
+			)
 			get_tree().get_root().add_child(projectile)
 
 		var d = target.get_global_transform().origin - get_global_transform().origin;

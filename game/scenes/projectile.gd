@@ -5,24 +5,35 @@ var target;
 var initial_velocity: Vector3;
 var speed = 15;
 var initial_velocity_contribution = 1;
+var damage = 1;
 
 
-func init(target, transform, initial_velocity):
+func init(target, position, initial_velocity, dmg):
 	self.target = target
-	self.transform = transform
+	self.transform.origin = position
 	self.initial_velocity = initial_velocity
+	self.damage = dmg
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+	target.connect("ghoul_died", self, "on_ghoul_died")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_ghoul_died():
+	print('hej')
+	queue_free()
+
+
 func _process(delta):
-	self.initial_velocity_contribution = max(0, self.initial_velocity_contribution - 0.2 * delta)
+	var pos_diff = target.get_global_transform().origin - self.get_global_transform().origin
+
+	# Delete self when at target
+	if pos_diff.length_squared() < 0.1:
+		queue_free()
+		target.take_damage(damage)
+		return
+
 	# Accelerate towards the target
-	var velocity = -(
-			self.get_global_transform().origin - target.get_global_transform().origin
-		).normalized() * speed \
-		+ (self.initial_velocity * self.initial_velocity_contribution)
+	self.initial_velocity_contribution = max(0, self.initial_velocity_contribution - 0.2 * delta)
+	var velocity = pos_diff.normalized() * speed + \
+		(self.initial_velocity * self.initial_velocity_contribution)
+
 	self.transform = self.transform.translated(velocity * delta)
