@@ -9,6 +9,9 @@ var parts: Array = []
 var health = 10
 
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 func init(grid: Grid, lane: int, column: int):
 	self.grid = grid
 	self.lane = lane

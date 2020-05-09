@@ -13,19 +13,22 @@ func _ready():
 	sprite.texture = renderSprite
 	assembly.connect("mouse_input", self, "_on_Assembly_mouse_input_event")
 
-func _process(delta):
+func _process(_delta):
 	var cameraPos: Vector3 = get_viewport().get_camera().get_global_transform().origin
 	sprite.look_at(cameraPos, Vector3(0, 1, 0))
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 func initialize(sprite, partType, assembly):
 	self.renderSprite = sprite
 	self.partType = partType
 	self.assembly = assembly
 
-func _on_DragDetector_input_event(camera, event, click_position, click_normal, shape_idx):
+func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			print("Left button clicked!")
 
-func _on_Assembly_mouse_input_event(event: InputEventMouseButton):
+func _on_Assembly_mouse_input_event(_event: InputEventMouseButton):
 	print("Does it work though?")

@@ -14,6 +14,9 @@ var grid: Grid = null
 
 var projectile_template = preload("../Fireball.tscn")
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 func init(transform, lane, grid, next_in_line):
 	self.lane = lane
 	self.grid = grid

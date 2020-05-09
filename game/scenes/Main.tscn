@@ -11,7 +11,7 @@ transform = Transform( -1.62921e-07, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 8.1460
 
 [node name="Ground" parent="." instance=ExtResource( 2 )]
 
-[node name="Ghoul Assembly2" parent="." instance=ExtResource( 1 )]
+[node name="Ghoul Assembly" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 13 )
 
 [node name="PartDelivery" parent="." instance=ExtResource( 3 )]

@@ -9,6 +9,8 @@ var initial_velocity_contribution = 1;
 var damage = 1;
 
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 func init(target, position, initial_velocity, dmg):
 	self.target = target
 	self.target_position = target.get_global_transform().origin

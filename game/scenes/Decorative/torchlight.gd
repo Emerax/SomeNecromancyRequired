@@ -15,7 +15,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	extra_intensity += randf() * 0.1 - 0.05
 	extra_intensity = min(max(-0.3, extra_intensity), 0.3)
 	self.light_energy = initial_energy + extra_intensity

@@ -21,6 +21,8 @@ var parts: Array = [
 	"LEG_TROLL"
 ]
 
+signal mouse_input
+
 onready var packedPartScenes = {
 	"ARM_DRAKE": preload("res://scenes/ghoul-parts/ArmDrake.tscn"),
 	"ARM_SCORPION":preload("res://scenes/ghoul-parts/ArmScorpion.tscn"),
@@ -56,8 +58,8 @@ func try_add_part(part_name):
 	if "BODY" in part_name:
 		if ghoul_in_progress == null:
 			ghoul_in_progress = part
-			ghoul_in_progress.global_transform.basis = ghoul_in_progress.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
 			add_child(ghoul_in_progress)
+			ghoul_in_progress.global_transform.basis = ghoul_in_progress.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
 			return true
 	elif ghoul_in_progress != null:
 		if "ARM" in part_name:
@@ -72,6 +74,6 @@ func try_add_part(part_name):
 #func _process(delta):
 #	pass
 
-func _on_AssemblyArea_input_event(camera, event, click_position, click_normal, shape_idx):
+func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event is InputEventMouseButton:
 		emit_signal("mouse_input", event)
