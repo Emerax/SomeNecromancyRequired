@@ -78,4 +78,4 @@ func fillDropOffs():
 			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
 		
 		var newDraggablePart = create_part(part_type)
-		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.0, 0))
+		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))

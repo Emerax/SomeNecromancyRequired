@@ -67,6 +67,7 @@ func try_add_part(part_name):
 			ghoul_in_progress = part
 			add_child(ghoul_in_progress)
 			ghoul_in_progress.global_transform.basis = ghoul_in_progress.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
+			ghoul_in_progress.transform.origin.x = -0.7
 			return true
 	elif ghoul_in_progress != null:
 		if "ARM" in part_name:

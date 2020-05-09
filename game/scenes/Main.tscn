@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ghoul_assembly/Ghoul Assembly.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ground/Ground.tscn" type="PackedScene" id=2]
@@ -6,50 +6,54 @@
 
 [sub_resource type="CubeMesh" id=1]
 
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0, 0, 1 )
+
 [node name="Main" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -33.0352, 11.2092, 13.053 )
+transform = Transform( -3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -26.4652, 11.2092, 13.053 )
 
 [node name="Ground" parent="." instance=ExtResource( 2 )]
 
 [node name="Ghoul Assembly" parent="." instance=ExtResource( 1 )]
-transform = Transform( 4.1719, 0, 0, 0, 4.1719, 0, 0, 0, 4.1719, -20.007, -1.5, 12.9976 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.007, 1.06703, 12.9976 )
 
 [node name="PartDelivery" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 13 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 13 )
 script = ExtResource( 3 )
+ghoulAssemblyPath = NodePath("../Ghoul Assembly")
 
 [node name="Dropoff1" type="Spatial" parent="PartDelivery"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="PartDelivery/Dropoff1"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
 
 [node name="Dropoff2" type="Spatial" parent="PartDelivery"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="PartDelivery/Dropoff2"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
 
 [node name="Dropoff3" type="Spatial" parent="PartDelivery"]
 
 [node name="MeshInstance" type="MeshInstance" parent="PartDelivery/Dropoff3"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
 
 [node name="Dropoff4" type="Spatial" parent="PartDelivery"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="PartDelivery/Dropoff4"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
 
 [node name="Dropoff5" type="Spatial" parent="PartDelivery"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="PartDelivery/Dropoff5"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 2 )
