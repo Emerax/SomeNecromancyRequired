@@ -72,6 +72,8 @@ func _process(delta):
 		var d = target.get_global_transform().origin - get_global_transform().origin;
 		if d.length() < 4:
 			can_move = false
+	else:
+		state = State.Walking
 
 	# Check if we ran into a ghoul or someone ahead of us
 	if self.next_in_line != null:
