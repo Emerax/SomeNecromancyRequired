@@ -12,7 +12,7 @@ var next_in_line = null
 
 var grid
 
-var projectile_template = preload("Fireball.tscn")
+var projectile_template = preload("../Fireball.tscn")
 
 func init(transform, lane, grid, next_in_line):
 	self.lane = lane
