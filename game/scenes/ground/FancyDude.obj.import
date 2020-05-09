@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/FancyDude.obj-b269ffe7b9b0d2bb7a7fb924de07d82c.mesh"
+
+[deps]
+
+files=[ "res://.import/FancyDude.obj-b269ffe7b9b0d2bb7a7fb924de07d82c.mesh" ]
+
+source_file="res://scenes/ground/FancyDude.obj"
+dest_files=[ "res://.import/FancyDude.obj-b269ffe7b9b0d2bb7a7fb924de07d82c.mesh", "res://.import/FancyDude.obj-b269ffe7b9b0d2bb7a7fb924de07d82c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

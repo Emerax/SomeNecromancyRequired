@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ground/torch.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/torchlight.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
@@ -10,6 +11,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+albedo_color = Color( 0.964706, 0.964706, 0.964706, 1 )
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.90716, 0.0, 0, 0 ]
@@ -40,15 +42,17 @@ material/0 = null
 
 [node name="OmniLight" type="OmniLight" parent="torch"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002666, 1.9147, -0.999934 )
-light_color = Color( 0.980392, 0.811765, 0.298039, 1 )
+light_color = Color( 0.980392, 0.713726, 0.298039, 1 )
 omni_range = 6.4
 omni_attenuation = 1.27456
+script = ExtResource( 2 )
 
-[node name="Particles" type="Particles" parent="torch/OmniLight"]
-transform = Transform( 0.0588478, 0, 0, 0, 0.14219, 0, 0, 0, 0.0588478, 0, -0.303099, 0.544108 )
+[node name="fire" type="Particles" parent="torch"]
+transform = Transform( 0.0588478, 0, 0, 0, 0.14219, 0, 0, 0, 0.0588478, 0.002666, 1.6116, -0.455826 )
 material_override = SubResource( 1 )
 cast_shadow = 0
 amount = 40
 lifetime = 1.65
+preprocess = 4.01
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )

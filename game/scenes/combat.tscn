@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ground/grid.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/EnemySpawner.gd" type="Script" id=2]
+
+[node name="CombatScene" type="Spatial"]
+
+[node name="EnemySpawner" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33.4798 )
+script = ExtResource( 2 )
+
+[node name="EnemySpawner2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92551, 0, 33.4798 )
+script = ExtResource( 2 )
+
+[node name="EnemySpawner3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88553, 0, 33.4798 )
+script = ExtResource( 2 )
+
+[node name="Grid" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9882 )
+
+[node name="grid" type="MeshInstance" parent="Grid"]
+mesh = ExtResource( 1 )
+material/0 = null

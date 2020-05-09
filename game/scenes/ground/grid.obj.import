@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/grid.obj-e01176922979bff8ff03e1f5f77f940f.mesh"
+
+[deps]
+
+files=[ "res://.import/grid.obj-e01176922979bff8ff03e1f5f77f940f.mesh" ]
+
+source_file="res://scenes/ground/grid.obj"
+dest_files=[ "res://.import/grid.obj-e01176922979bff8ff03e1f5f77f940f.mesh", "res://.import/grid.obj-e01176922979bff8ff03e1f5f77f940f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
