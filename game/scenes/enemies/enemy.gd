@@ -5,6 +5,11 @@ extends Spatial
 var kind_preload = preload("AxeDudeKind.tscn")
 var kind;
 
+var accessories = [
+		preload("accessories/lantern.tscn"),
+		preload("accessories/shield.tscn"),
+	]
+
 
 enum State {
 	# Currently walking
@@ -43,6 +48,9 @@ func init(transform, lane, grid, next_in_line):
 func _ready():
 	kind = kind_preload.instance()
 	add_child(kind)
+
+	var accessory = accessories[rand_range(0, accessories.size())]
+	kind.find_node("off_hand").add_child(accessory.instance())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

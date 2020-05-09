@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/lamp_main.obj-ee48f26d08bed3d03787fb8edb985e2c.mesh"
+
+[deps]
+
+files=[ "res://.import/lamp_main.obj-ee48f26d08bed3d03787fb8edb985e2c.mesh" ]
+
+source_file="res://scenes/enemies/accessories/lamp_main.obj"
+dest_files=[ "res://.import/lamp_main.obj-ee48f26d08bed3d03787fb8edb985e2c.mesh", "res://.import/lamp_main.obj-ee48f26d08bed3d03787fb8edb985e2c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
