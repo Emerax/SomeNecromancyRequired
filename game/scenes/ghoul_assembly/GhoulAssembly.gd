@@ -39,6 +39,8 @@ onready var packedPartScenes = {
 	"LEG_TROLL": preload("res://scenes/ghoul-parts/LegTroll.tscn")
 }
 
+var packedGhoul = preload("res://scenes/ghoul/Ghoul.tscn")
+
 onready var leg_lenghts = {
 	"LEG_DRAKE": 1.552,
 	"LEG_HORSE": 1.975,
@@ -47,28 +49,43 @@ onready var leg_lenghts = {
 }
 
 var ghoul_in_progress
+var ghoul_body
 
 var selected_part
 
 func try_add_part(part_name):
 	assert(packedPartScenes.has(part_name))
 	var part = packedPartScenes[part_name].instance()
+	assert(Abilities.classes.has(part_name))
+	var ability = Abilities.classes[part_name].new()
 	
 	if "BODY" in part_name:
 		if ghoul_in_progress == null:
-			ghoul_in_progress = part
+			# Ghoul
+			ghoul_in_progress = packedGhoul.instance()
+			ghoul_in_progress.add_ability(ability)
 			add_child(ghoul_in_progress)
-			ghoul_in_progress.global_transform.basis = ghoul_in_progress.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
-			ghoul_in_progress.transform.origin.x = -0.7
+			
+			# Body
+			ghoul_body = part
+			ghoul_in_progress.add_child(ghoul_body)
+			ghoul_body.global_transform.basis = ghoul_body.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
+			ghoul_body.transform.origin.x = -0.7
 			return true
 	elif ghoul_in_progress != null:
 		if "ARM" in part_name:
-			return ghoul_in_progress.try_add_arms(part)
+			if ghoul_body.try_add_arms(part):
+				ghoul_in_progress.add_ability(ability)
+				return true
 		elif "HEAD" in part_name:
-			return ghoul_in_progress.try_add_head(part)
+			if ghoul_body.try_add_head(part):
+				ghoul_in_progress.add_ability(ability)
+				return true
 		elif "LEG" in part_name:
 			assert(leg_lenghts.has(part_name))
-			return ghoul_in_progress.try_add_legs(part, leg_lenghts[part_name])
+			if ghoul_body.try_add_legs(part, leg_lenghts[part_name]):
+				ghoul_in_progress.add_ability(ability)
+				return true
 	return false
 
 func _on_part_select_event(part):

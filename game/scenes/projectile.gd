@@ -39,8 +39,7 @@ func _process(delta):
 
 		if not hit_target:
 			hit_target = true
-			if target.health > 0:
-				target.take_damage(damage)
+			target.take_damage(damage)
 			remove_timer.start()
 
 		return
