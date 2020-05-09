@@ -83,4 +83,5 @@ func _process(delta):
 
 	if can_move and state == State.Walking:
 		self.transform = self.transform.translated(Vector3(0, 0, -self.speed) * delta)
+		kind.play_walk()
 

@@ -21,14 +21,14 @@ func _ready():
 func _process(_delta):
 	pass
 
-func walk():
-	if not animator.is_playing():
-		animator.play("walk-loop")
-
 
 
 func play_attack():
 	animator.play("attack")
+
+func play_walk():
+	if !is_animating():
+		animator.play("walk-loop")
 
 func is_animating() -> bool:
 	return animator.is_playing()
