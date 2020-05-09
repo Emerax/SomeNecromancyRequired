@@ -48,7 +48,6 @@ func _ready():
 	try_add_part("HEAD_HORSE")
 	try_add_part("LEG_SCORPION")
 	try_add_part("ARM_DRAKE")
-	pass # Replace with function body.
 
 func try_add_part(part_name):
 	assert(packedPartScenes.has(part_name))
@@ -68,3 +67,11 @@ func try_add_part(part_name):
 		elif "LEG" in part_name:
 			return ghoul_in_progress.try_add_legs(part)
 	return false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _on_AssemblyArea_input_event(camera, event, click_position, click_normal, shape_idx):
+	if event is InputEventMouseButton:
+		emit_signal("mouse_input", event)
