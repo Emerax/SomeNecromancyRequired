@@ -1,13 +1,12 @@
 extends Spatial
 
 
-# var kind_preload = preload("WizardType.tscn")
-var kind_preload = preload("AxeDudeKind.tscn")
 var kind;
 
-var accessories = [
-		preload("accessories/lantern.tscn"),
-		preload("accessories/shield.tscn"),
+# Plural of kind,d clearly
+var kinderen = [
+		preload("AxeDudeKind.tscn"),
+		preload("WizardKind.tscn"),
 	]
 
 
@@ -46,11 +45,9 @@ func init(transform, lane, grid, next_in_line):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var kind_preload = kinderen[rand_range(0, kinderen.size())]
 	kind = kind_preload.instance()
 	add_child(kind)
-
-	var accessory = accessories[rand_range(0, accessories.size())]
-	kind.find_node("off_hand").add_child(accessory.instance())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
