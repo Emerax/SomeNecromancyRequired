@@ -16,22 +16,22 @@ emission_energy = 16.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=5]
 lacunarity = 2.49
 
-[sub_resource type="NoiseTexture" id=3]
-noise = SubResource( 2 )
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
 
-[sub_resource type="OpenSimplexNoise" id=4]
+[sub_resource type="OpenSimplexNoise" id=3]
 period = 256.0
 lacunarity = 4.0
 
-[sub_resource type="NoiseTexture" id=5]
-noise = SubResource( 4 )
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.976471, 0.521569, 0.521569, 1 )
-albedo_texture = SubResource( 3 )
+albedo_texture = SubResource( 6 )
 metallic = 0.17
 metallic_specular = 0.26
 clearcoat_enabled = true
@@ -39,7 +39,7 @@ clearcoat = 1.0
 clearcoat_gloss = 0.81
 subsurf_scatter_enabled = true
 subsurf_scatter_strength = 1.0
-subsurf_scatter_texture = SubResource( 5 )
+subsurf_scatter_texture = SubResource( 4 )
 
 [node name="Main" type="Spatial"]
 
@@ -94,4 +94,4 @@ material/7 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="AssemblyDecorations/cart"]
 mesh = ExtResource( 8 )
-material/0 = SubResource( 6 )
+material/0 = SubResource( 2 )

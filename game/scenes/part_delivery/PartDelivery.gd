@@ -91,11 +91,25 @@ func fillDropOffs():
 			part_type = seeded_parts.pop_back()
 		else:
 			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
-		
-		var newDraggablePart = create_part(part_type, i)
-		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+
+		add_part_at_dropoff(i, dropOff, part_type)
+	
 		i += 1
 
 
+func add_part_at_dropoff(i: int, dropOff, part_type):
+	var newDraggablePart = create_part(part_type, i)
+	newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+
+
 func on_part_used(part_index: int):
+	var seeded_parts = []
+	seeded_parts.append(arm_types[rng.randi() % arm_types.size()])
+	seeded_parts.append(body_types[rng.randi() % body_types.size()])
+	seeded_parts.append(head_types[rng.randi() % head_types.size()])
+	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
+	seeded_parts.shuffle()
+	var part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
+	add_part_at_dropoff(part_index, dropOffs[part_index], part_type)
 	pass
+
