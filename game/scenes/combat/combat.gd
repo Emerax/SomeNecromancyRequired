@@ -20,21 +20,13 @@ var ghouls: Array = [
 	[null, null, null, null],
 ]
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	self.call_deferred("try_add_ghoul", 2, 3, dummy_ghoul_template.instance())
-	self.call_deferred("try_add_ghoul", 0, 0, dummy_ghoul_template.instance())
-	self.call_deferred("try_add_ghoul", 0, 3, dummy_ghoul_template.instance())
-
 func set_ghoul_pos(lane: int, column: int, ghoul: Object):
-		grid[lane][column].add_child(ghoul)
-		ghouls[lane][column] = ghoul
-		ghoul.onMove(lane, column)
+	grid[lane][column].add_child(ghoul)
+	ghouls[lane][column] = ghoul
+	ghoul.onMove(lane, column)
 
 func try_add_ghoul(lane: int, column: int, new_ghoul: Object):
 	if ghouls[lane][column] == null:
-		new_ghoul.init(self)
 		set_ghoul_pos(lane, column, new_ghoul)
 		new_ghoul.activate()
 		return true
