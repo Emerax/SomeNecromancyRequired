@@ -15,12 +15,12 @@ var dragged: bool = false
 signal select_part(part)
 
 # Called when the node enters the scene tree for the first time.
+# warning-ignore:return_value_discarded
 func _ready():
 	sprite.texture = renderSprite
 	selectionSprite.visible = false
 	var camera_rotation = get_viewport().get_camera().global_transform.basis;
 	global_transform.basis = camera_rotation
-# warning-ignore:return_value_discarded
 	self.connect("select_part", assembly, "_on_part_select_event")
 	tooltip.visible = false;
 	var partInfo = Abilities.classes[partType].new()
@@ -59,3 +59,10 @@ func _on_DragDetector_mouse_entered():
 
 func _on_DragDetector_mouse_exited():
 	tooltip.visible = false
+
+func _process(_delta):
+	if tooltip.visible:
+		var pos = get_viewport().get_mouse_position()
+		pos.x -= tooltip.rect_size.x / 2
+		pos.y -= tooltip.rect_size.y + 50
+		tooltip.rect_position = pos
