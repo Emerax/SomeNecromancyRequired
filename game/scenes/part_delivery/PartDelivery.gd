@@ -37,7 +37,7 @@ onready var dropOffs = [
 	$Dropoff9
 ]
 
-var parts_to_give: int = 12
+var parts_to_give: int = 20
 
 var slots = []
 
@@ -100,9 +100,11 @@ func fillDropOffs():
 
 
 func add_part_at_dropoff(i: int, dropOff, part_type):
-	var newDraggablePart = create_part(part_type, i)
-	newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
-	slots[i] = newDraggablePart
+	if parts_to_give > 0:
+		var newDraggablePart = create_part(part_type, i)
+		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+		slots[i] = newDraggablePart
+		parts_to_give -= 1
 
 
 func on_part_used(part_index: int):
@@ -120,5 +122,6 @@ func clear_current_parts():
 		i += 1
 
 func on_assembly_start():
+	parts_to_give = 20
 	clear_current_parts()
 	fillDropOffs()
