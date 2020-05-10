@@ -14,6 +14,9 @@ const DODGE_INCREASE_SHARP = 0.3
 # Ability-specific
 const DAMAGE_SCALE_TIME = 0.02
 const DAMAGE_SCALE_TROLL = 0.04
+const HEAL_RANGE = 9.0
+const HEAL_AMOUNT = 100.0
+const HEAL_COOLDOWN = 4.0
 
 
 # TEMP!!!!
@@ -93,8 +96,17 @@ class HeadDrake:
 
 class HeadHorse:
 	var name = "Horse Head"
-	var description = "+ HEALS adjacent ghouls and self."
-	# TODO
+	var description = "+ HEALS nearby ghouls and self."
+	var cooldown = 0.0
+	func process_stats_third_pass(ghoul, delta):
+		cooldown -= delta
+		if cooldown < 0:
+			cooldown = HEAL_COOLDOWN
+			for ally in ghoul.get_tree().get_nodes_in_group("ghouls"):
+				if ally.is_active():
+					var d = ally.global_transform.origin - ghoul.global_transform.origin
+					if d.length() <= HEAL_RANGE:
+						ghoul.take_damage(-HEAL_AMOUNT)
 
 class HeadScorpion:
 	var name = "Scorpion Head"
