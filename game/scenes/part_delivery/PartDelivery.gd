@@ -37,6 +37,8 @@ onready var dropOffs = [
 	$Dropoff9
 ]
 
+var parts_to_give: int = 12
+
 var slots = []
 
 onready var packed_part = preload("res://scenes/draggable_parts/DraggablePart.tscn")
@@ -93,23 +95,30 @@ func fillDropOffs():
 			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
 
 		add_part_at_dropoff(i, dropOff, part_type)
-	
+
 		i += 1
 
 
 func add_part_at_dropoff(i: int, dropOff, part_type):
 	var newDraggablePart = create_part(part_type, i)
 	newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+	slots[i] = newDraggablePart
 
 
 func on_part_used(part_index: int):
-	var seeded_parts = []
-	seeded_parts.append(arm_types[rng.randi() % arm_types.size()])
-	seeded_parts.append(body_types[rng.randi() % body_types.size()])
-	seeded_parts.append(head_types[rng.randi() % head_types.size()])
-	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
-	seeded_parts.shuffle()
 	var part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
 	add_part_at_dropoff(part_index, dropOffs[part_index], part_type)
-	pass
 
+
+
+func clear_current_parts():
+	var i = 0
+	for dropOff in dropOffs:
+		if slots[i] != null:
+			slots[i].queue_free()
+			slots[i] = null
+		i += 1
+
+func on_assembly_start():
+	clear_current_parts()
+	fillDropOffs()

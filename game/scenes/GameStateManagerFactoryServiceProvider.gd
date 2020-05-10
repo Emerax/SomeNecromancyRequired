@@ -4,6 +4,7 @@ extends Spatial
 var state
 var camera_path = @"../Camera"
 var combat_path = @"../CombatScene"
+var part_delivery_path = @"../PartDelivery"
 
 enum GameState {
 	Assembly,
@@ -36,3 +37,4 @@ func on_fight_end():
 	state = GameState.Assembly
 	get_node(camera_path).move_to_assembly()
 	get_node(combat_path).on_combat_end()
+	get_node(part_delivery_path).on_assembly_start()
