@@ -3,6 +3,7 @@ extends Spatial
 
 var state
 var camera_path = @"../Camera"
+var combat_path = @"../CombatScene"
 
 enum GameState {
 	Assembly,
@@ -27,9 +28,11 @@ func _process(delta):
 func on_fight_start():
 	state = GameState.Fight
 	get_node(camera_path).move_to_fight()
+	get_node(combat_path).on_combat_start()
 	print("test")
 
 
 func on_fight_end():
 	state = GameState.Assembly
 	get_node(camera_path).move_to_assembly()
+	get_node(combat_path).on_combat_end()

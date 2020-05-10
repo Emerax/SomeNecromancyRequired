@@ -91,3 +91,10 @@ func _on_ghoul_select(ghoul):
 	else:
 		selected_ghoul = ghoul
 		selected_ghoul.onSelect()
+		
+		
+func on_combat_start():
+	$Grid/grid.hide()
+
+func on_combat_end():
+	$Grid/grid.show()
