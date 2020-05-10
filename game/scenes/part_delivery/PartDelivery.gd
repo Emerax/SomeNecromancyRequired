@@ -116,6 +116,7 @@ func on_part_used(part_index: int):
 func clear_current_parts():
 	var i = 0
 	for dropOff in dropOffs:
+		slots[i] = weakref(slots[i]).get_ref()
 		if slots[i] != null:
 			slots[i].queue_free()
 			slots[i] = null
