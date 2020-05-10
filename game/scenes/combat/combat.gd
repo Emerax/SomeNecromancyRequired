@@ -6,6 +6,7 @@ export(NodePath) var assemblyPath
 
 onready var dummy_ghoul_template = load("res://scenes/ghoul/GhoulDmmy.tscn")
 onready var castle_wall = get_node(@"../Ground/WallWithDoor")
+onready var game_over_text = get_node(@"../GameOverText")
 var broken_castle_mesh: Mesh = preload("res://scenes/ground/castle_broken.obj")
 
 onready var grid: Array = [
@@ -103,3 +104,4 @@ func damage_castle(damage: int):
 
 	if castle_health <= 0:
 		castle_wall.mesh = broken_castle_mesh
+		game_over_text.visible = true
