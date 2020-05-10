@@ -2,6 +2,8 @@ extends Spatial
 
 class_name Combat
 
+signal combat_done
+
 export(NodePath) var assemblyPath
 
 onready var dummy_ghoul_template = load("res://scenes/ghoul/GhoulDmmy.tscn")
@@ -20,6 +22,7 @@ var ghouls: Array = [
 	[null, null, null, null],
 ]
 
+onready var spawners = [$Spawners/EnemySpawner0, $Spawners/EnemySpawner1, $Spawners/EnemySpawner2]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,6 +62,16 @@ func get_first_defender(lane: int) -> Object:
 			return ghouls[lane][i]
 		i -= 1
 	return null
+
+func onSpawnerDone():
+	for spawner in spawners:
+		if spawner.spawnCount < 1 and spawner.last_spawn == null:
+			return
+	emit_signal("combat_done")
+
+func startCombatRound(difficulty):
+	for spawner in spawners:
+		spawner.queueEnemies(difficulty)
 
 func grid_index_to_coord(index):
 	return [index / 4, index % 4]
