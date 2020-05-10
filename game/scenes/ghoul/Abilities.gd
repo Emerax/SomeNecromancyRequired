@@ -58,7 +58,7 @@ onready var classes = {
 
 class ArmsDrake:
 	var name = "Drake Arms"
-	var description = "+ Grants FLIGHT allowing MELEE to be used RANGED."
+	var description = "+ Grants FLIGHT allowing MELEE to be used RANGED. [Not implemented]"
 	# TODO
 
 class ArmsScorpion:
@@ -101,7 +101,7 @@ class BodyTroll:
 
 class HeadDrake:
 	var name = "Drake Head"
-	var description = "+ Very strong RANGED fireballs."
+	var description = "+ Very strong RANGED fireballs. [Not implemented]"
 	# TODO
 
 class HeadHorse:
