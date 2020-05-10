@@ -1,5 +1,7 @@
 extends Spatial
 
+class_name DraggablePart
+
 onready var sprite: Sprite3D = $PartSprite
 onready var selectionSprite: Sprite3D = $SelectionSprite
 onready var tooltip = $Tooltip

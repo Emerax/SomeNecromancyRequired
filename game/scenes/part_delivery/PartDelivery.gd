@@ -2,6 +2,8 @@ extends Spatial
 
 export(NodePath) var ghoulAssemblyPath
 
+const DraggablePart = preload("../draggable_parts/DraggablePart.gd")
+
 onready var packedSpriteScenes = {
 	"ARM_DRAKE": preload("res://scenes/ghoul-parts/sprites/drake-arm.png"),
 	"ARM_SCORPION":preload("res://scenes/ghoul-parts/sprites/scorption-arm.png"),
@@ -88,19 +90,41 @@ func fillDropOffs():
 	
 	var i = 0
 	for dropOff in dropOffs:
-		var part_type
-		if !seeded_parts.empty():
-			part_type = seeded_parts.pop_back()
-		else:
-			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
-
-		add_part_at_dropoff(i, dropOff, part_type)
+		add_part_at_dropoff(i, dropOff)
 
 		i += 1
 
 
-func add_part_at_dropoff(i: int, dropOff, part_type):
+func add_part_at_dropoff(i: int, dropOff):
+	var has_legs = false
+	var has_head = false
+	var has_body = false
+	var has_arms = false
+	for slot in slots:
+		slot = weakref(slot).get_ref()
+		if slot is DraggablePart and slot != null:
+			if "ARM" in slot.partType:
+				has_arms = true
+			if "HEAD" in slot.partType:
+				has_head = true
+			if "BODY" in slot.partType:
+				has_body = true
+			if "LEG" in slot.partType:
+				has_legs = true
+
 	if parts_to_give > 0:
+		var part_type
+		if not has_arms:
+			part_type = arm_types[rng.randi() % arm_types.size()]
+		elif not has_legs:
+			part_type = leg_types[rng.randi() % leg_types.size()]
+		elif not has_body:
+			part_type = body_types[rng.randi() % body_types.size()]
+		elif not has_head:
+			part_type = head_types[rng.randi() % arm_types.size()]
+		else:
+			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
+
 		var newDraggablePart = create_part(part_type, i)
 		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
 		slots[i] = newDraggablePart
@@ -108,8 +132,7 @@ func add_part_at_dropoff(i: int, dropOff, part_type):
 
 
 func on_part_used(part_index: int):
-	var part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
-	add_part_at_dropoff(part_index, dropOffs[part_index], part_type)
+	add_part_at_dropoff(part_index, dropOffs[part_index])
 
 
 
