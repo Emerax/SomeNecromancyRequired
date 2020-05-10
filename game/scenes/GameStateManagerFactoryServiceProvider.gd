@@ -30,7 +30,6 @@ func on_fight_start():
 	state = GameState.Fight
 	get_node(camera_path).move_to_fight()
 	get_node(combat_path).on_combat_start()
-	print("test")
 
 
 func on_fight_end():
