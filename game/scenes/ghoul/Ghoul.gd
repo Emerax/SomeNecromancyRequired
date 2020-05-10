@@ -79,15 +79,29 @@ func take_damage(amount: int, ranged = false):
 	var health_factor = (max_health - damage_taken) / float(max_health)
 	healthbar.transform = initial_health_transform.scaled(Vector3(health_factor, 1, 1))
 
+var target = null
+var is_attacking = false
+
 func try_attack():
-	if attack_cooldown_left <= 0.0:
-		var target = weakref(enemy_spawner.first_in_line).get_ref()
+	if attack_cooldown_left <= 0.0 && !is_attacking:
+		target = weakref(enemy_spawner.first_in_line).get_ref()
 		if target != null:
 			var target_pos = target.global_transform.origin 
 			var d = target_pos - global_transform.origin
 			if d.length() < MELEE_RANGE:
-				target.take_damage(melee)
+				$AnimationPlayer.play("attack")
 				attack_cooldown_left = 1.0 / STANDARD_ATTACK_SPEED
+				var animation_length = $AnimationPlayer.current_animation_length
+				if attack_cooldown_left < animation_length:
+					var animation_speed = animation_length/attack_cooldown_left
+					$AnimationPlayer.play("attack", -1, animation_speed)
+				is_attacking = true
+
+func deal_damage():
+	target = weakref(enemy_spawner.first_in_line).get_ref()
+	if target != null:
+		target.take_damage(melee)
+	is_attacking = false
 
 func add_ability(ability):
 	abilities.append(ability)
