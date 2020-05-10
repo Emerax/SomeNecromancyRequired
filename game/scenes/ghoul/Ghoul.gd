@@ -3,6 +3,7 @@ extends Spatial
 class_name Ghoul
 
 signal select_ghoul(ghoul)
+signal select_fresh_ghoul(ghoul)
 
 onready var selectionSprite = $SelectionSprite
 
@@ -53,17 +54,15 @@ func print_stats():
 	print("ranged_received_factor ", ranged_received_factor)
 	print("===========================")
 
-func finialize():
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
+func init(combat: Combat):
 	$ClickDetector.set_process(true)
-
-# warning-ignore:shadowed_variable
-# warning-ignore:shadowed_variable
-# warning-ignore:shadowed_variable
-func init(combat: Combat, lane: int, column: int):
 	self.connect("select_ghoul", combat, "_on_ghoul_select")
 	self.combat = combat
-	self.lane = lane
-	self.column = column
+
+func activate():
 	active = true
 
 func take_damage(amount: int):

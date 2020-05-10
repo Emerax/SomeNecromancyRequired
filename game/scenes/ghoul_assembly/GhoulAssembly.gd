@@ -21,6 +21,9 @@ var parts: Array = [
 	"LEG_TROLL"
 ]
 
+export(NodePath) var combatPath
+onready var combat = self.get_node(combatPath)
+
 onready var packedPartScenes = {
 	"ARM_DRAKE": preload("res://scenes/ghoul-parts/ArmDrake.tscn"),
 	"ARM_SCORPION":preload("res://scenes/ghoul-parts/ArmScorpion.tscn"),
@@ -69,7 +72,6 @@ func try_add_part(part_name):
 			# Body
 			ghoul_body = part
 			ghoul_in_progress.add_child(ghoul_body)
-			ghoul_body.global_transform.basis = ghoul_body.global_transform.basis.rotated(Vector3.UP, -0.5*PI)
 			ghoul_body.transform.origin.x = -0.7
 			return true
 	elif ghoul_in_progress != null:
@@ -87,6 +89,10 @@ func try_add_part(part_name):
 				ghoul_in_progress.add_ability(ability)
 				return true
 	return false
+
+func on_ghoul_deployed():
+	ghoul_body = null	
+	ghoul_in_progress = null
 
 func _on_part_select_event(part):
 	if selected_part != null:
@@ -108,4 +114,4 @@ func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal
 					selected_part.onAdd()
 					selected_part = null #Clear selection when adding
 					if ghoul_body.is_complete():
-						ghoul_in_progress.finialize()
+						ghoul_in_progress.init(combat)
