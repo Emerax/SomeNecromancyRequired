@@ -6,6 +6,8 @@ onready var selectionSprite: Sprite3D = $SelectionSprite
 var renderSprite
 var partType
 var assembly
+var delivery
+var delivery_index: int;
 
 var dragged: bool = false
 
@@ -26,10 +28,12 @@ func _ready():
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
-func initialize(sprite, partType, assembly):
+func initialize(sprite, partType, assembly, delivery, delivery_index: int):
 	self.renderSprite = sprite
 	self.partType = partType
 	self.assembly = assembly
+	self.delivery = delivery
+	self.delivery_index = delivery_index
 
 func onSelect():
 	selectionSprite.visible = true
@@ -39,6 +43,7 @@ func onDeselect():
 
 #Stuff to do when added to ghoul.
 func onAdd():
+	self.delivery.on_part_used(delivery_index)
 	self.queue_free()
 
 func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
