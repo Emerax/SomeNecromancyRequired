@@ -15,6 +15,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 mesh = SubResource( 1 )
 material/0 = null
 
+[node name="Dropoff7" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.05805 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Dropoff7"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Dropoff9" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89991, 0, -9.05805 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Dropoff9"]
+mesh = SubResource( 1 )
+material/0 = null
+
 [node name="Dropoff2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
 
@@ -39,5 +53,19 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Dropoff5"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Dropoff6" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.24157 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Dropoff6"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Dropoff8" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89991, 0, 9.24157 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Dropoff8"]
 mesh = SubResource( 1 )
 material/0 = null

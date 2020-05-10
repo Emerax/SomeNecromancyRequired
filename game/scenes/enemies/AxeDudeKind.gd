@@ -7,7 +7,7 @@ var accessories = [
 		preload("../Decorative/torch.tscn"),
 	]
 
-var attack_range = 3
+var attack_range = 4
 
 onready var animator = $axe_dude/AnimationPlayer;
 

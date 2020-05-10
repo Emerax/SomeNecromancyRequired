@@ -25,7 +25,19 @@ var body_types = []
 var head_types = []
 var leg_types = []
 
-onready var dropOffs = [$Dropoff1, $Dropoff2, $Dropoff3, $Dropoff4, $Dropoff5]
+onready var dropOffs = [
+	$Dropoff1,
+	$Dropoff2,
+	$Dropoff3,
+	$Dropoff4,
+	$Dropoff5,
+	$Dropoff6,
+	$Dropoff7,
+	$Dropoff8,
+	$Dropoff9
+]
+
+var slots = []
 
 onready var packed_part = preload("res://scenes/draggable_parts/DraggablePart.tscn")
 
@@ -35,6 +47,8 @@ var first = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for dropOff in dropOffs:
+		slots.append(null)
 	rng.randomize()
 	for part_name in packedSpriteScenes.keys():
 		if "ARM" in part_name:
@@ -54,11 +68,11 @@ func _process(_delta):
 		fillDropOffs()
 		first = false
 
-func create_part(partType):
+func create_part(partType, index):
 	var newPartSprite = packedSpriteScenes[partType]
 	var newPart: Spatial = packed_part.instance()
 	var ghoulAssembly = get_node(ghoulAssemblyPath)
-	newPart.initialize(newPartSprite, partType, ghoulAssembly)
+	newPart.initialize(newPartSprite, partType, ghoulAssembly, self, index)
 	get_tree().root.call_deferred("add_child", newPart)
 	return newPart
 
@@ -70,12 +84,32 @@ func fillDropOffs():
 	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
 	seeded_parts.shuffle()
 	
+	var i = 0
 	for dropOff in dropOffs:
 		var part_type
 		if !seeded_parts.empty():
 			part_type = seeded_parts.pop_back()
 		else:
 			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
-		
-		var newDraggablePart = create_part(part_type)
-		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+
+		add_part_at_dropoff(i, dropOff, part_type)
+	
+		i += 1
+
+
+func add_part_at_dropoff(i: int, dropOff, part_type):
+	var newDraggablePart = create_part(part_type, i)
+	newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
+
+
+func on_part_used(part_index: int):
+	var seeded_parts = []
+	seeded_parts.append(arm_types[rng.randi() % arm_types.size()])
+	seeded_parts.append(body_types[rng.randi() % body_types.size()])
+	seeded_parts.append(head_types[rng.randi() % head_types.size()])
+	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
+	seeded_parts.shuffle()
+	var part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
+	add_part_at_dropoff(part_index, dropOffs[part_index], part_type)
+	pass
+
