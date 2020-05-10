@@ -48,63 +48,63 @@ class ArmsDrake:
 
 class ArmsScorpion:
 	var name = "Scorpion Arms"
-	var descripion = "Sharply increased MELEE.\nAllows attacking SIDEWAYS."
+	var description = "Sharply increased MELEE.\nAllows attacking SIDEWAYS."
 	func process_stats(ghoul):
 		ghoul.melee += MELEE_INCREASE_SHARP
 	# TODO: Attack sideways
 
 class ArmsTroll:
 	var name = "Troll Arms"
-	var descripion = "Increased MELEE, scales with total number of non-troll parts on the field.\nAllows attacking DIAGONALLY."
+	var description = "Increased MELEE, scales with total number of non-troll parts on the field.\nAllows attacking DIAGONALLY."
 	func process_stats(ghoul):
 		ghoul.melee += MELEE_INCREASE * TROLL_SCALE
 	# TODO: Attack diagonally
 
 class BodyDrake:
 	var name = "Drake Body"
-	var descripion = "Halving received RANGED damage."
+	var description = "Halving received RANGED damage."
 	func process_stats(ghoul):
 		ghoul.ranged_received_factor = 0.5
 
 class BodyHorse:
 	var name = "Horse Body"
-	var descripion = "MELEE increased with DODGE chance.\nIncreased HEALTH."
+	var description = "MELEE increased with DODGE chance.\nIncreased HEALTH."
 	func process_stats_second_pass(ghoul):
 		ghoul.melee *= 1.0 + ghoul.dodge
 		ghoul.max_health += HEALTH_INCREASE
 
 class BodyScorpion:
 	var name = "Scorpion Body"
-	var descripion = "Inreased MELEE.\nIncreased HEALTH."
+	var description = "Inreased MELEE.\nIncreased HEALTH."
 	func process_stats(ghoul):
 		ghoul.melee += MELEE_INCREASE
 		ghoul.max_health += HEALTH_INCREASE
 
 class BodyTroll:
 	var name = "Troll Body"
-	var descripion = "Increased ATTACK SPEED, scales with total number of non-troll parts on the field."
+	var description = "Increased ATTACK SPEED, scales with total number of non-troll parts on the field."
 	func process_stats(ghoul):
 		ghoul.attack_speed += ATTACK_SPEED_INCREASE * TROLL_SCALE
 
 class HeadDrake:
 	var name = "Drake Head"
-	var descripion = "Very strong RANGED fireballs."
+	var description = "Very strong RANGED fireballs."
 	# TODO
 
 class HeadHorse:
 	var name = "Horse Head"
-	var descripion = "HEALS adjacent ghouls and self."
+	var description = "HEALS adjacent ghouls and self."
 	# TODO
 
 class HeadScorpion:
 	var name = "Scorpion Head"
-	var descripion = "Sharply increased ATTACK SPEED."
+	var description = "Sharply increased ATTACK SPEED."
 	func process_stats(ghoul):
 		ghoul.attack_speed += ATTACK_SPEED_INCREASE_SHARP
 
 class HeadTroll:
 	var name = "Troll Head"
-	var descripion = "Scales up MELEE/RANGED strength with time on the field\nand total number of non-troll parts on the field."
+	var description = "Scales up MELEE/RANGED strength with time on the field\nand total number of non-troll parts on the field."
 	var time_passed = 0.0
 	func process_stats_third_pass(ghoul, delta):
 		time_passed += delta
@@ -115,25 +115,25 @@ class HeadTroll:
 
 class LegDrake:
 	var name = "Drake Legs"
-	var descripion = "DODGE chance.\nIncreased MELEE."
+	var description = "DODGE chance.\nIncreased MELEE."
 	func process_stats(ghoul):
 		ghoul.dodge += DODGE_INCREASE
 		ghoul.melee += MELEE_INCREASE
 
 class LegHorse:
 	var name = "Horse Legs"
-	var descripion = "High DODGE chance."
+	var description = "High DODGE chance."
 	func process_stats(ghoul):
 		ghoul.dodge += DODGE_INCREASE_SHARP
 
 class LegScorpion:
 	var name = "Scorpion Legs"
-	var descripion = "Increased HEALTH."
+	var description = "Increased HEALTH."
 	func process_stats(ghoul):
 		ghoul.max_health += HEALTH_INCREASE
 
 class LegTroll:
 	var name = "Troll Legs"
-	var descripion = "Low DODGE chance, scales with total number of non-troll parts on the field."
+	var description = "Low DODGE chance, scales with total number of non-troll parts on the field."
 	func process_stats(ghoul):
 		ghoul.dodge += DODGE_INCREASE_LOW * TROLL_SCALE

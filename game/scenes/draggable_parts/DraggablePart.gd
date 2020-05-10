@@ -2,6 +2,7 @@ extends Spatial
 
 onready var sprite: Sprite3D = $PartSprite
 onready var selectionSprite: Sprite3D = $SelectionSprite
+onready var tooltip = $Tooltip
 
 var renderSprite
 var partType
@@ -20,10 +21,9 @@ func _ready():
 	var camera_rotation = get_viewport().get_camera().global_transform.basis;
 	global_transform.basis = camera_rotation
 	self.connect("select_part", assembly, "_on_part_select_event")
-	#$PartSprite/DragDetector.connect("input_event", self, "_on_DragDetector_input_event")
-
-#func _process(_delta):
-#	selectionSprite.visible = !selectionSprite.visible
+	tooltip.visible = false;
+	var partInfo = Abilities.classes[partType].new()
+	tooltip.setText(partInfo.name, partInfo.description)
 
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
@@ -50,3 +50,9 @@ func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("select_part", self)
+
+func _on_DragDetector_mouse_entered():
+	tooltip.visible = true
+
+func _on_DragDetector_mouse_exited():
+	tooltip.visible = false
