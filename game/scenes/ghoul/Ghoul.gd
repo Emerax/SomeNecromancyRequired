@@ -35,7 +35,7 @@ var third_pass_abilities = []
 
 func _ready():
 # warning-ignore:return_value_discarded
-	self.connect("select_ghoul", combat, "_on_ghoul_select")
+	$ClickDetector.set_process(false)
 	selectionSprite.visible = false
 
 func print_stats():
@@ -53,10 +53,14 @@ func print_stats():
 	print("ranged_received_factor ", ranged_received_factor)
 	print("===========================")
 
+func finialize():
+	$ClickDetector.set_process(true)
+
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 func init(combat: Combat, lane: int, column: int):
+	self.connect("select_ghoul", combat, "_on_ghoul_select")
 	self.combat = combat
 	self.lane = lane
 	self.column = column

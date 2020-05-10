@@ -44,49 +44,50 @@ material/0 = SubResource( 1 )
 [node name="Area" type="Area" parent="Grid"]
 
 [node name="00" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 6, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="01" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 6, 0, 6 )
 shape = SubResource( 2 )
 
 [node name="02" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 12 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 6, 0, 12 )
 shape = SubResource( 2 )
 
 [node name="03" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 18 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 6, 0, 18 )
 shape = SubResource( 2 )
 
 [node name="10" type="CollisionShape" parent="Grid/Area"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="11" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 6 )
 shape = SubResource( 2 )
 
 [node name="12" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 12 )
 shape = SubResource( 2 )
 
 [node name="13" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 18 )
 shape = SubResource( 2 )
 
 [node name="20" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -6, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="21" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -6, 0, 6 )
 shape = SubResource( 2 )
 
 [node name="22" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -6, 0, 12 )
 shape = SubResource( 2 )
 
 [node name="23" type="CollisionShape" parent="Grid/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 18 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -6, 0, 18 )
 shape = SubResource( 2 )
 [connection signal="input_event" from="Grid/Area" to="." method="_on_Grid_input_event"]

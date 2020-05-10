@@ -107,3 +107,5 @@ func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal
 				if try_add_part(selected_part.partType):
 					selected_part.onAdd()
 					selected_part = null #Clear selection when adding
+					if ghoul_body.is_complete():
+						ghoul_in_progress.finialize()

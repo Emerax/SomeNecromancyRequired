@@ -18,6 +18,10 @@ func _ready():
 	var camera_rotation = get_viewport().get_camera().global_transform.basis;
 	global_transform.basis = camera_rotation
 	self.connect("select_part", assembly, "_on_part_select_event")
+	#$PartSprite/DragDetector.connect("input_event", self, "_on_DragDetector_input_event")
+
+#func _process(_delta):
+#	selectionSprite.visible = !selectionSprite.visible
 
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
@@ -38,7 +42,6 @@ func onAdd():
 	self.queue_free()
 
 func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
-	print("Hello?")
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("select_part", self)

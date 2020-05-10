@@ -2,7 +2,7 @@ extends Spatial
 
 class_name Combat
 
-onready var ghoul_template = load("res://scenes/ghoul/Ghoul.tscn")
+onready var dummy_ghoul_template = load("res://scenes/ghoul/GhoulDmmy.tscn")
 
 onready var grid: Array = [
 	[self.get_node("Grid/Area/00"), self.get_node("Grid/Area/01"), self.get_node("Grid/Area/02"), self.get_node("Grid/Area/03")],
@@ -21,19 +21,19 @@ var ghouls: Array = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_ghoul(2, 3)
-	add_ghoul(0, 0)
-	add_ghoul(0, 3)
+	self.call_deferred("add_ghoul", 2, 3, dummy_ghoul_template.instance())
+	self.call_deferred("add_ghoul", 0, 0, dummy_ghoul_template.instance())
+	self.call_deferred("add_ghoul", 0, 3, dummy_ghoul_template.instance())
 
-func add_ghoul(lane: int, column: int):
+func set_ghoul_pos(lane: int, column: int, ghoul: Object):
+		grid[lane][column].add_child(ghoul)
+		ghouls[lane][column] = ghoul
+		#ghoul.transform.origin = grid[lane][column].get_global_transform().origin
+		
+func add_ghoul(lane: int, column: int, new_ghoul: Object):
 	if ghouls[lane][column] == null:
-		var new_ghoul = ghoul_template.instance()
 		new_ghoul.init(self, lane, column)
-		new_ghoul.global_transform = Transform(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)
-		self.call_deferred("add_child", new_ghoul)
-		new_ghoul.combat = self
-		ghouls[lane][column] = new_ghoul
-
+		set_ghoul_pos(lane, column, new_ghoul)
 
 func remove_ghoul(lane: int, column: int):
 	if ghouls[lane][column] != null:
@@ -43,9 +43,8 @@ func remove_ghoul(lane: int, column: int):
 func try_move_ghoul(ghoul, lane: int, column: int) -> bool:
 	if ghouls[lane][column] != null:
 		remove_ghoul(ghoul.lane, ghoul.column)
-		ghoul.transform.origin = grid[lane][column].get_global_transform().origin
-		ghouls[lane][column].add_child(ghoul)
-		ghouls[lane][column] = ghoul
+		grid[lane][column].add_child(ghoul)
+		set_ghoul_pos(lane, column, ghoul)
 		ghoul.onMove(lane, column)
 		return true
 	return false

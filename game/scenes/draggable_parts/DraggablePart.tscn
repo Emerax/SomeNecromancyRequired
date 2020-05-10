@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/draggable_parts/DragDetector.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/draggable_parts/DraggablePart.gd" type="Script" id=2]
 [ext_resource path="res://scenes/glow.png" type="Texture" id=3]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.33677, 0.321679, 0.0182013 )
+
+[sub_resource type="CubeMesh" id=2]
 
 [node name="DraggablePart" type="Spatial"]
 script = ExtResource( 2 )
@@ -10,8 +14,18 @@ script = ExtResource( 2 )
 [node name="PartSprite" type="Sprite3D" parent="."]
 alpha_cut = 2
 
-[node name="DragDetector" parent="PartSprite" instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+[node name="DragDetector" type="Area" parent="PartSprite"]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PartSprite/DragDetector"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.41947, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PartSprite/DragDetector"]
+transform = Transform( 0.295955, 0, 0, 0, 0.292744, 0, 0, 0, 0.0292049, 0, 0, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
 
 [node name="SelectionSprite" type="Sprite3D" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, -0.0798381 )

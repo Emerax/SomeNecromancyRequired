@@ -43,6 +43,9 @@ func has_free_head_points():
 
 func has_free_leg_points():
 	return has_free_points(leg_points)
+	
+func is_complete():
+	return !has_free_arm_points() and !has_free_head_points() and !has_free_leg_points()
 
 
 func try_add_limbs(limb, point_array):
