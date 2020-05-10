@@ -8,6 +8,8 @@ var accessories = [
 	]
 
 var attack_range = 4
+var max_health = 500
+var damage = 150
 
 onready var animator = $axe_dude/AnimationPlayer;
 

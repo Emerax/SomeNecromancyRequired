@@ -5,7 +5,7 @@ var target_position = Vector3(0, 0, 0)
 var initial_velocity: Vector3
 var speed = 15
 var initial_velocity_contribution = 1
-var damage = 1
+var damage
 var hit_target = false
 var particles: Particles = null
 var remove_timer = Timer.new()
@@ -39,7 +39,8 @@ func _process(delta):
 
 		if not hit_target:
 			hit_target = true
-			target.take_damage(damage)
+			var ranged = true
+			target.take_damage(damage, ranged)
 			remove_timer.start()
 
 		return

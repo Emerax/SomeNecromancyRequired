@@ -1,5 +1,7 @@
 extends Spatial
 
+class_name DraggablePart
+
 onready var sprite: Sprite3D = $PartSprite
 onready var selectionSprite: Sprite3D = $SelectionSprite
 onready var tooltip = $Tooltip
@@ -15,6 +17,7 @@ var dragged: bool = false
 signal select_part(part)
 
 # Called when the node enters the scene tree for the first time.
+# warning-ignore:return_value_discarded
 func _ready():
 	sprite.texture = renderSprite
 	selectionSprite.visible = false
@@ -25,6 +28,8 @@ func _ready():
 	var partInfo = Abilities.classes[partType].new()
 	tooltip.setText(partInfo.name, partInfo.description)
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
@@ -56,3 +61,10 @@ func _on_DragDetector_mouse_entered():
 
 func _on_DragDetector_mouse_exited():
 	tooltip.visible = false
+
+func _process(_delta):
+	if tooltip.visible:
+		var pos = get_viewport().get_mouse_position()
+		pos.x -= tooltip.rect_size.x / 2
+		pos.y -= tooltip.rect_size.y + 50
+		tooltip.rect_position = pos

@@ -27,12 +27,12 @@ ghoulAssemblyPath = NodePath("../Ghoul Assembly")
 [node name="CombatScene" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 48 )
 assemblyPath = NodePath("../Ghoul Assembly")
+gameStatePath = NodePath("../GameStateManagerFactoryServiceProvider")
 
 [node name="AssemblyDecorations" parent="." instance=ExtResource( 5 )]
 
 [node name="GameStateManagerFactoryServiceProvider" type="Spatial" parent="."]
 script = ExtResource( 6 )
-combatPath = NodePath("../CombatScene")
 
 [node name="camera_fight_target" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 5.57222e-08, -1.53095e-07, -31.9886, 24.9668, 36.6855 )

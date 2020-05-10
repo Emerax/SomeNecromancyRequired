@@ -5,8 +5,12 @@ class_name Combat
 signal combat_done
 
 export(NodePath) var assemblyPath
+export(NodePath) var gameStatePath
 
 onready var dummy_ghoul_template = load("res://scenes/ghoul/GhoulDmmy.tscn")
+onready var castle_wall = get_node(@"../Ground/WallWithDoor")
+onready var game_over_text = get_node(@"../GameOverText")
+var broken_castle_mesh: Mesh = preload("res://scenes/ground/castle_broken.obj")
 
 onready var grid: Array = [
 	[self.get_node("Grid/Area/00"), self.get_node("Grid/Area/01"), self.get_node("Grid/Area/02"), self.get_node("Grid/Area/03")],
@@ -23,21 +27,18 @@ var ghouls: Array = [
 ]
 
 onready var spawners = [$Spawners/EnemySpawner0, $Spawners/EnemySpawner1, $Spawners/EnemySpawner2]
+var castle_health = 10
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	self.call_deferred("try_add_ghoul", 2, 3, dummy_ghoul_template.instance())
-	self.call_deferred("try_add_ghoul", 0, 0, dummy_ghoul_template.instance())
-	self.call_deferred("try_add_ghoul", 0, 3, dummy_ghoul_template.instance())
+	self.connect("combat_done", self.get_node(gameStatePath), "on_fight_end")
 
 func set_ghoul_pos(lane: int, column: int, ghoul: Object):
-		grid[lane][column].add_child(ghoul)
-		ghouls[lane][column] = ghoul
-		ghoul.onMove(lane, column)
+	grid[lane][column].add_child(ghoul)
+	ghouls[lane][column] = ghoul
+	ghoul.onMove(lane, column)
 
 func try_add_ghoul(lane: int, column: int, new_ghoul: Object):
 	if ghouls[lane][column] == null:
-		new_ghoul.init(self)
 		set_ghoul_pos(lane, column, new_ghoul)
 		new_ghoul.activate()
 		return true
@@ -65,8 +66,9 @@ func get_first_defender(lane: int) -> Object:
 
 func onSpawnerDone():
 	for spawner in spawners:
-		if spawner.spawnCount < 1 and spawner.last_spawn == null:
+		if not spawner.done:
 			return
+	print("Does this happen?")
 	emit_signal("combat_done")
 
 func startCombatRound(difficulty):
@@ -104,3 +106,21 @@ func _on_ghoul_select(ghoul):
 	else:
 		selected_ghoul = ghoul
 		selected_ghoul.onSelect()
+		
+		
+func on_combat_start():
+	pass
+	# $Grid/grid.hide()
+
+
+func on_combat_end():
+	pass
+	# $Grid/grid.show()
+
+
+func damage_castle(damage: int):
+	castle_health -= damage
+
+	if castle_health <= 0:
+		castle_wall.mesh = broken_castle_mesh
+		game_over_text.visible = true

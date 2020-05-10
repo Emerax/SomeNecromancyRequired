@@ -6,7 +6,9 @@ var accessories = [
 		preload("../Decorative/torch.tscn"),
 	]
 
-var attack_range = 50
+var attack_range = 15
+var max_health = 300
+var damage = 75
 
 onready var animator = $wizard/AnimationPlayer;
 
@@ -22,8 +24,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-
-
 
 func play_attack():
 	animator.play("attack")
