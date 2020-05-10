@@ -37,31 +37,37 @@ alpha_cut = 2
 texture = ExtResource( 3 )
 
 [node name="Tooltip" type="Panel" parent="."]
-margin_left = 843.448
-margin_top = 1.07457
-margin_right = 1022.45
-margin_bottom = 101.075
+margin_left = -1.0
+margin_right = 347.0
+margin_bottom = 85.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="RichTextLabel" parent="Tooltip"]
-margin_right = 132.0
-margin_bottom = 15.0
-rect_scale = Vector2( 1.3, 1.3 )
+margin_left = 6.0
+margin_top = 7.0
+margin_right = 138.0
+margin_bottom = 22.0
 bbcode_enabled = true
 bbcode_text = "TITLE_PLACEHOLDER"
 text = "TITLE_PLACEHOLDER"
 scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Description" type="RichTextLabel" parent="Tooltip"]
-margin_top = 19.0
-margin_right = 179.0
-margin_bottom = 100.0
+margin_left = 8.0
+margin_top = 31.0
+margin_right = 345.0
+margin_bottom = 72.0
 bbcode_enabled = true
-bbcode_text = "DESCRIPTION_PLACEHOLDER"
-text = "DESCRIPTION_PLACEHOLDER"
+bbcode_text = "Scales up MELEE/RANGED strength with time on the field
+and total number of non-troll parts on the field."
+text = "Scales up MELEE/RANGED strength with time on the field and total number of non-troll parts on the field.
+Hej"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
