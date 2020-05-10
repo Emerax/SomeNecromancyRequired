@@ -92,11 +92,13 @@ func _on_ghoul_select(ghoul):
 		
 		
 func on_combat_start():
-	$Grid/grid.hide()
+	pass
+	# $Grid/grid.hide()
 
 
 func on_combat_end():
-	$Grid/grid.show()
+	pass
+	# $Grid/grid.show()
 
 
 func damage_castle(damage: int):
