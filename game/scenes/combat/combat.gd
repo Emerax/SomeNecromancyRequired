@@ -28,8 +28,8 @@ func _ready():
 func set_ghoul_pos(lane: int, column: int, ghoul: Object):
 		grid[lane][column].add_child(ghoul)
 		ghouls[lane][column] = ghoul
-		#ghoul.transform.origin = grid[lane][column].get_global_transform().origin
-		
+		ghoul.onMove(lane, column)
+
 func add_ghoul(lane: int, column: int, new_ghoul: Object):
 	if ghouls[lane][column] == null:
 		new_ghoul.init(self, lane, column)
@@ -37,15 +37,13 @@ func add_ghoul(lane: int, column: int, new_ghoul: Object):
 
 func remove_ghoul(lane: int, column: int):
 	if ghouls[lane][column] != null:
-		remove_child(ghouls[lane][column])
+		grid[lane][column].remove_child(ghouls[lane][column])
 	ghouls[lane][column] = null
 
 func try_move_ghoul(ghoul, lane: int, column: int) -> bool:
-	if ghouls[lane][column] != null:
+	if ghouls[lane][column] == null:
 		remove_ghoul(ghoul.lane, ghoul.column)
-		grid[lane][column].add_child(ghoul)
 		set_ghoul_pos(lane, column, ghoul)
-		ghoul.onMove(lane, column)
 		return true
 	return false
 
@@ -61,10 +59,11 @@ func grid_index_to_coord(index):
 	return [index / 4, index % 4]
 
 func _on_Grid_input_event(_camera, event, _click_position, _click_normal, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			if selected_ghoul != null:
+	if selected_ghoul != null:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT and event.pressed:
 				var clickedPos = grid_index_to_coord(shape_idx)
+				print("Trying to move ghoul")
 				if try_move_ghoul(selected_ghoul, clickedPos[0], clickedPos[1]):
 					selected_ghoul.onDeselect()
 					selected_ghoul = null
