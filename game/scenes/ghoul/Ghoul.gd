@@ -41,6 +41,7 @@ var second_pass_abilities = []
 var third_pass_abilities = []
 
 func _ready():
+	add_to_group("ghouls")
 # warning-ignore:return_value_discarded
 	$ClickDetector.set_process(false)
 	selectionSprite.visible = false
@@ -71,11 +72,16 @@ func init(combat: Combat):
 
 func activate():
 	active = true
+	
+func is_active():
+	return active
 
 func take_damage(amount: int, ranged = false):
 	if ranged:
 		amount *= ranged_received_factor
 	damage_taken += amount
+	if damage_taken < 0: # Due to heal
+		damage_taken = 0
 	var health_factor = (max_health - damage_taken) / float(max_health)
 	healthbar.transform = initial_health_transform.scaled(Vector3(health_factor, 1, 1))
 
