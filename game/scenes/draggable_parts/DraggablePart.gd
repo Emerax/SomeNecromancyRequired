@@ -15,6 +15,7 @@ var delivery_index: int;
 var dragged: bool = false
 
 signal select_part(part)
+signal removed(deliver_index)
 
 # Called when the node enters the scene tree for the first time.
 # warning-ignore:return_value_discarded
@@ -49,7 +50,11 @@ func onDeselect():
 #Stuff to do when added to ghoul.
 func onAdd():
 	self.delivery.on_part_used(delivery_index)
-	self.queue_free()
+	remove()
+
+func remove():
+	emit_signal("removed", delivery_index)
+	queue_free()
 
 func _on_DragDetector_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if event is InputEventMouseButton:
@@ -63,6 +68,7 @@ func _on_DragDetector_mouse_exited():
 	tooltip.visible = false
 
 func _process(_delta):
+	global_transform.basis = get_viewport().get_camera().global_transform.basis
 	if tooltip.visible:
 		var pos = get_viewport().get_mouse_position()
 		pos.x -= tooltip.rect_size.x / 2

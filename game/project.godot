@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://scenes/combat/combat.gd"
 }, {
 "base": "Spatial",
+"class": "DraggablePart",
+"language": "GDScript",
+"path": "res://scenes/draggable_parts/DraggablePart.gd"
+}, {
+"base": "Spatial",
 "class": "Ghoul",
 "language": "GDScript",
 "path": "res://scenes/ghoul/Ghoul.gd"
 } ]
 _global_script_class_icons={
 "Combat": "",
+"DraggablePart": "",
 "Ghoul": ""
 }
 

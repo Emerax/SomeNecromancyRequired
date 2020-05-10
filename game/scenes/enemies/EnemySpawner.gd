@@ -21,6 +21,8 @@ var first_in_line = null
 
 func set_next(next):
 	last_spawn = next
+	if next == null:
+		first_in_line = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,13 +35,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	currentCooldown -= delta
-	if spawnCount and currentCooldown <= 0:
+	if spawnCount > 0 and currentCooldown <= 0:
 		call_deferred("spawn_enemy")
 		spawnCount -= 1
 		currentCooldown = spawnCooldown + rng.randf() * spawnVariance
 
 func onSpawneeDeath():
-	if spawnCount < 1 and last_spawn == null:
+	if spawnCount <= 0 and last_spawn == null:
 		self.done = true
 		combat.onSpawnerDone()
 

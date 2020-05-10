@@ -1,5 +1,6 @@
 extends Spatial
 
+signal removed
 
 var kind;
 
@@ -59,11 +60,15 @@ func set_prev(prev):
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
-		prev_in_line.set_next(next_in_line)
-		if (next_in_line != null):
-			next_in_line.set_prev(prev_in_line)
-		self.spawner.onSpawneeDeath()
-		queue_free()
+		remove()
+
+func remove():
+	prev_in_line.set_next(next_in_line)
+	if next_in_line != null:
+		next_in_line.set_prev(prev_in_line)
+	self.spawner.onSpawneeDeath()
+	emit_signal("removed")
+	queue_free()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -116,5 +121,5 @@ func _process(delta):
 
 		if global_transform.origin.z <= 0:
 			combat.damage_castle(1)
-			take_damage(health)
+			remove()
 

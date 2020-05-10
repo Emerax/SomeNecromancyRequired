@@ -3,6 +3,7 @@ extends Spatial
 class_name Ghoul
 
 signal select_ghoul(ghoul)
+signal removed
 
 onready var selectionSprite = $SelectionSprite
 onready var healthbar = $Healthbar
@@ -14,6 +15,7 @@ var lane = 0
 var column = 0
 var enemy_spawner = null
 var parts: Array = []
+var body
 
 var damage_taken = 0
 var attack_cooldown_left = 0.0
@@ -88,15 +90,23 @@ func take_damage(amount: int, ranged = false):
 	healthbar.transform = initial_health_transform.scaled(Vector3(health_factor, 1, 1))
 
 var target = null
-var is_attacking = false
+
+func invalidate_target():
+	target = null
+
+func set_target(enemy):
+	if enemy != target:
+		target = enemy
+		target.connect("removed", self, "invalidate_target")
+
+func clear_target():
+	target.disconnect("removed", self, "invalidate_target")
+	target = null
 
 func try_attack():
-	if attack_cooldown_left <= 0.0 && !is_attacking:
-		if is_instance_valid(enemy_spawner.first_in_line):
-			target = enemy_spawner.first_in_line
-		else:
-			target = null
-		if target != null and target.has_method("get_global_transform"):
+	if attack_cooldown_left <= 0.0 && target == null:
+		if enemy_spawner.first_in_line != null:
+			set_target(enemy_spawner.first_in_line)
 			var target_pos = target.global_transform.origin 
 			var d = target_pos - global_transform.origin
 			if d.length() < MELEE_RANGE:
@@ -106,14 +116,14 @@ func try_attack():
 				if attack_cooldown_left < animation_length:
 					var animation_speed = animation_length/attack_cooldown_left
 					$AnimationPlayer.play("attack", -1, animation_speed)
-				is_attacking = true
+			else:
+				clear_target()
 
 func deal_damage():
-	if !is_instance_valid(target):
-		target = null
 	if target != null:
-		target.take_damage(melee)
-	is_attacking = false
+		var to_damage = target # Since take_damage may remove
+		clear_target() # Must be done bevore removal
+		to_damage.take_damage(melee)
 
 func add_ability(ability):
 	abilities.append(ability)
@@ -124,7 +134,13 @@ func add_ability(ability):
 	if ability.has_method("process_stats_third_pass"):
 		third_pass_abilities.append(ability)
 
+func add_body(ghoul_body):
+	body = ghoul_body
+	add_child(body)
+
 func _process(delta):
+	body.global_transform.basis = get_viewport().get_camera().global_transform.basis
+	
 	if !active:
 		return
 	
@@ -132,6 +148,7 @@ func _process(delta):
 		for ability in abilities:
 			Abilities.on_ability_removed(ability)
 		combat.remove_ghoul(lane, column)
+		emit_signal("removed")
 		queue_free()
 		return
 	

@@ -71,7 +71,7 @@ func try_add_part(part_name):
 			
 			# Body
 			ghoul_body = part
-			ghoul_in_progress.add_child(ghoul_body)
+			ghoul_in_progress.add_body(ghoul_body)
 			ghoul_body.transform.origin.x = -0.7
 			return true
 	elif ghoul_in_progress != null:
@@ -94,27 +94,38 @@ func on_ghoul_deployed():
 	ghoul_body = null	
 	ghoul_in_progress = null
 
-func _on_part_select_event(part):
-	if is_instance_valid(selected_part):
-		selected_part = null
 
+func invalidate_selected_part(_i):
+	selected_part = null
+	
+func set_selected_part(part):
+	if part != selected_part:
+		selected_part = part
+		selected_part.connect("removed", self, "invalidate_selected_part")
+		selected_part.onSelect()
+
+func clear_selected_part():
+	selected_part.disconnect("removed", self, "invalidate_selected_part")
+	selected_part = null
+
+
+func _on_part_select_event(part):
 	if selected_part != null:
 		selected_part.onDeselect()
 		if selected_part == part:
-			selected_part = null
+			clear_selected_part()
 		else:
-			selected_part = part
-			selected_part.onSelect()
+			set_selected_part(part)
 	else:
-		selected_part = part
-		selected_part.onSelect()
+		set_selected_part(part)
 
 func _on_AssemblyArea_input_event(_camera, event, _click_position, _click_normal, _shape_idx):
 	if selected_part != null:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT and event.pressed:
 				if try_add_part(selected_part.partType):
-					selected_part.onAdd()
-					selected_part = null #Clear selection when adding
+					var part_to_add = selected_part # Since onAdd removes
+					clear_selected_part() # Must be done bevore removal
+					part_to_add.onAdd()
 					if ghoul_body.is_complete():
 						ghoul_in_progress.init(combat)

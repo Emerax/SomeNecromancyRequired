@@ -10,11 +10,11 @@ var hit_target = false
 var particles: Particles = null
 var remove_timer = Timer.new()
 
-
 # warning-ignore:shadowed_variable
 # warning-ignore:shadowed_variable
 func init(target, position, initial_velocity, dmg):
 	self.target = target
+	target.connect("removed", self, "invalidate_target")
 	self.target_position = target.get_global_transform().origin
 	self.transform.origin = position
 	self.initial_velocity = initial_velocity
@@ -24,6 +24,9 @@ func init(target, position, initial_velocity, dmg):
 	add_child(self.remove_timer)
 	self.remove_timer.wait_time = self.particles.lifetime
 	self.remove_timer.connect("timeout", self, "_on_Timer_timeout")
+
+func invalidate_target():
+	target = null
 
 
 func _on_Timer_timeout():
@@ -40,9 +43,8 @@ func _process(delta):
 		if not hit_target:
 			hit_target = true
 			var ranged = true
-			var target_safe = weakref(target).get_ref()
-			if target_safe != null:
-				target_safe.take_damage(damage, ranged)
+			if target != null:
+				target.take_damage(damage, ranged)
 			remove_timer.start()
 
 		return

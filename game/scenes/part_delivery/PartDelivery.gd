@@ -77,32 +77,22 @@ func create_part(partType, index):
 	var newPart: Spatial = packed_part.instance()
 	var ghoulAssembly = get_node(ghoulAssemblyPath)
 	newPart.initialize(newPartSprite, partType, ghoulAssembly, self, index)
-	get_tree().root.call_deferred("add_child", newPart)
 	return newPart
 
 func fillDropOffs():
-	var seeded_parts = []
-	seeded_parts.append(arm_types[rng.randi() % arm_types.size()])
-	seeded_parts.append(body_types[rng.randi() % body_types.size()])
-	seeded_parts.append(head_types[rng.randi() % head_types.size()])
-	seeded_parts.append(leg_types[rng.randi() % leg_types.size()])
-	seeded_parts.shuffle()
-	
 	var i = 0
 	for dropOff in dropOffs:
-		add_part_at_dropoff(i, dropOff)
+		add_part_at_dropoff(i)
 
 		i += 1
 
 
-func add_part_at_dropoff(i: int, dropOff):
+func add_part_at_dropoff(i: int):
 	var has_legs = false
 	var has_head = false
 	var has_body = false
 	var has_arms = false
 	for slot in slots:
-		if !is_instance_valid(slot):
-			slot = null
 		if slot is DraggablePart and slot != null:
 			if "ARM" in slot.partType:
 				has_arms = true
@@ -115,34 +105,48 @@ func add_part_at_dropoff(i: int, dropOff):
 
 	if parts_to_give > 0:
 		var part_type
-		if not has_arms:
-			part_type = arm_types[rng.randi() % arm_types.size()]
+		if not has_body:
+			part_type = body_types[rng.randi() % body_types.size()]
 		elif not has_legs:
 			part_type = leg_types[rng.randi() % leg_types.size()]
-		elif not has_body:
-			part_type = body_types[rng.randi() % body_types.size()]
 		elif not has_head:
 			part_type = head_types[rng.randi() % arm_types.size()]
+		elif not has_arms:
+			part_type = arm_types[rng.randi() % arm_types.size()]
 		else:
 			part_type = packedSpriteScenes.keys()[rng.randi() % packedSpriteScenes.keys().size()]
-
-		var newDraggablePart = create_part(part_type, i)
-		newDraggablePart.global_transform = dropOff.global_transform.translated(Vector3(0, 2.5, 0))
-		slots[i] = newDraggablePart
+		
+		set_slot(i, create_part(part_type, i))
 		parts_to_give -= 1
 
+func invalidate_slot(i: int):
+	slots[i] = null
+
+func set_slot(i: int, part):
+	if part != slots[i]:
+		slots[i] = part
+		get_tree().root.add_child(slots[i])
+		slots[i].global_transform = dropOffs[i].global_transform.translated(Vector3(0, 2.5, 0))
+		slots[i].global_transform.basis = get_viewport().get_camera().global_transform.basis
+		slots[i].connect("removed", self, "invalidate_slot")
+
+func clear_slot(i: int):
+	if slots[i] != null:
+		get_tree().root.remove_child(slots[i])
+		slots[i].disconnect("removed", self, "invalidate_slot")
+		slots[i] = null
 
 func on_part_used(part_index: int):
-	add_part_at_dropoff(part_index, dropOffs[part_index])
-
-
+	clear_slot(part_index)
+	add_part_at_dropoff(part_index)
 
 func clear_current_parts():
 	var i = 0
 	for dropOff in dropOffs:
-		if slots[i] != null and is_instance_valid(slots[i]):
-			slots[i].queue_free()
-			slots[i] = null
+		if slots[i] != null:
+			var to_remove = slots[i] # Since remove removes
+			clear_slot(i) # Must be done bevore removal
+			to_remove.remove()
 		i += 1
 
 func on_assembly_start():
