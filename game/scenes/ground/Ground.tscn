@@ -142,3 +142,8 @@ transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -17.1162,
 
 [node name="Torch4" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 17.6705, 2.75619, 2.29307 )
+
+[node name="OmniLight" parent="Torch4/torch" index="0"]
+shadow_enabled = true
+
+[editable path="Torch4"]
