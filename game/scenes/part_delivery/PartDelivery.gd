@@ -101,7 +101,8 @@ func add_part_at_dropoff(i: int, dropOff):
 	var has_body = false
 	var has_arms = false
 	for slot in slots:
-		slot = weakref(slot).get_ref()
+		if !is_instance_valid(slot):
+			slot = null
 		if slot is DraggablePart and slot != null:
 			if "ARM" in slot.partType:
 				has_arms = true
@@ -139,8 +140,7 @@ func on_part_used(part_index: int):
 func clear_current_parts():
 	var i = 0
 	for dropOff in dropOffs:
-		slots[i] = weakref(slots[i]).get_ref()
-		if slots[i] != null:
+		if slots[i] != null and is_instance_valid(slots[i]):
 			slots[i].queue_free()
 			slots[i] = null
 		i += 1

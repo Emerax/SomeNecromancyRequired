@@ -92,8 +92,11 @@ var is_attacking = false
 
 func try_attack():
 	if attack_cooldown_left <= 0.0 && !is_attacking:
-		target = weakref(enemy_spawner.first_in_line).get_ref()
-		if target != null:
+		if is_instance_valid(enemy_spawner.first_in_line):
+			target = enemy_spawner.first_in_line
+		else:
+			target = null
+		if target != null and target.has_method("get_global_transform"):
 			var target_pos = target.global_transform.origin 
 			var d = target_pos - global_transform.origin
 			if d.length() < MELEE_RANGE:
@@ -106,7 +109,8 @@ func try_attack():
 				is_attacking = true
 
 func deal_damage():
-	target = weakref(enemy_spawner.first_in_line).get_ref()
+	if !is_instance_valid(target):
+		target = null
 	if target != null:
 		target.take_damage(melee)
 	is_attacking = false

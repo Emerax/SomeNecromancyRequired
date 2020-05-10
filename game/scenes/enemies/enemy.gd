@@ -105,7 +105,7 @@ func _process(delta):
 		state = State.Walking
 
 	# Check if we ran into a ghoul or someone ahead of us
-	if weakref(self.next_in_line).get_ref() != null:
+	if is_instance_valid(self.next_in_line):
 		var d = next_in_line.get_global_transform().origin - get_global_transform().origin;
 		if d.length() < 4:
 			can_move = false

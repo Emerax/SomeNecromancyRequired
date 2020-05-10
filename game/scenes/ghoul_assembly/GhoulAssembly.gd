@@ -95,7 +95,9 @@ func on_ghoul_deployed():
 	ghoul_in_progress = null
 
 func _on_part_select_event(part):
-	selected_part = weakref(selected_part).get_ref()
+	if is_instance_valid(selected_part):
+		selected_part = null
+
 	if selected_part != null:
 		selected_part.onDeselect()
 		if selected_part == part:
