@@ -30,6 +30,7 @@ onready var spawners = [$Spawners/EnemySpawner0, $Spawners/EnemySpawner1, $Spawn
 var castle_health = 10
 
 func _ready():
+# warning-ignore:return_value_discarded
 	self.connect("combat_done", self.get_node(gameStatePath), "on_fight_end")
 
 func set_ghoul_pos(lane: int, column: int, ghoul: Object):
@@ -68,7 +69,6 @@ func onSpawnerDone():
 	for spawner in spawners:
 		if not spawner.done:
 			return
-	print("Does this happen?")
 	emit_signal("combat_done")
 
 func startCombatRound(difficulty):

@@ -26,7 +26,6 @@ var non_troll_count = 0
 
 func update_troll_scale():
 	troll_scale = 1.0 + non_troll_count * TROLL_SCALE_FACTOR
-	print("Troll scale: ", troll_scale)
 
 func on_ability_added(ability):
 	if !("Troll" in ability.name):

@@ -33,7 +33,6 @@ func on_fight_start():
 
 
 func on_fight_end():
-	print("Does this happen?")
 	combatRound += 1
 	state = GameState.Assembly
 	get_node(camera_path).move_to_assembly()
