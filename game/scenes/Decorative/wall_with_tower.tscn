@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ground/castle_wall.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/Decorative/Tower.tscn" type="PackedScene" id=2]
+
+[node name="castle_wall" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+
+[node name="Tower" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0307, 0, 0 )
