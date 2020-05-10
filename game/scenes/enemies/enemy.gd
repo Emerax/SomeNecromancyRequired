@@ -113,3 +113,7 @@ func _process(delta):
 		self.transform = self.transform.translated(Vector3(0, 0, -self.speed) * delta)
 		kind.play_walk()
 
+		if global_transform.origin.z <= 0:
+			combat.damage_castle(1)
+			take_damage(health)
+

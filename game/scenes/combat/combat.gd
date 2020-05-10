@@ -5,6 +5,8 @@ class_name Combat
 export(NodePath) var assemblyPath
 
 onready var dummy_ghoul_template = load("res://scenes/ghoul/GhoulDmmy.tscn")
+onready var castle_wall = get_node(@"../Ground/WallWithDoor")
+var broken_castle_mesh: Mesh = preload("res://scenes/ground/castle_broken.obj")
 
 onready var grid: Array = [
 	[self.get_node("Grid/Area/00"), self.get_node("Grid/Area/01"), self.get_node("Grid/Area/02"), self.get_node("Grid/Area/03")],
@@ -19,6 +21,9 @@ var ghouls: Array = [
 	[null, null, null, null],
 	[null, null, null, null],
 ]
+
+var castle_health = 10
+
 
 func set_ghoul_pos(lane: int, column: int, ghoul: Object):
 	grid[lane][column].add_child(ghoul)
@@ -88,5 +93,13 @@ func _on_ghoul_select(ghoul):
 func on_combat_start():
 	$Grid/grid.hide()
 
+
 func on_combat_end():
 	$Grid/grid.show()
+
+
+func damage_castle(damage: int):
+	castle_health -= damage
+
+	if castle_health <= 0:
+		castle_wall.mesh = broken_castle_mesh
