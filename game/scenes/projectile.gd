@@ -40,7 +40,9 @@ func _process(delta):
 		if not hit_target:
 			hit_target = true
 			var ranged = true
-			target.take_damage(damage, ranged)
+			var target_safe = weakref(target).get_ref()
+			if target_safe != null:
+				target_safe.take_damage(damage, ranged)
 			remove_timer.start()
 
 		return

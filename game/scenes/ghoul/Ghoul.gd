@@ -72,7 +72,9 @@ func init(combat: Combat):
 
 func activate():
 	active = true
-	
+	for ability in abilities:
+		Abilities.on_ability_added(ability)
+
 func is_active():
 	return active
 
@@ -123,7 +125,11 @@ func _process(delta):
 		return
 	
 	if damage_taken >= max_health: # max_health can vary
+		for ability in abilities:
+			Abilities.on_ability_removed(ability)
 		combat.remove_ghoul(lane, column)
+		queue_free()
+		return
 	
 	# Reset
 	melee                  = STANDARD_MELEE
