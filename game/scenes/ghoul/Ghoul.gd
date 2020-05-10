@@ -5,6 +5,7 @@ class_name Ghoul
 signal select_ghoul(ghoul)
 
 onready var selectionSprite = $SelectionSprite
+onready var healthbar = $Healthbar
 
 var active = false
 var combat: Combat = null
@@ -13,6 +14,7 @@ var lane = 0
 var column = 0
 var parts: Array = []
 var damage_taken = 0
+onready var initial_health_transform = healthbar.transform
 
 # Variabel stats from abilities
 const STANDARD_MELEE = 100
@@ -68,6 +70,8 @@ func init(combat: Combat, lane: int, column: int):
 
 func take_damage(amount: int):
 	damage_taken += amount
+	var health_factor = (max_health - damage_taken) / float(max_health)
+	healthbar.transform = initial_health_transform.scaled(Vector3(health_factor, 1, 1))
 
 func add_ability(ability):
 	abilities.append(ability)
