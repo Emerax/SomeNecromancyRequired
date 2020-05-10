@@ -20,16 +20,16 @@ script = ExtResource( 4 )
 [node name="Spawners" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73.3735 )
 
-[node name="EnemySpawner" type="Spatial" parent="Spawners"]
+[node name="EnemySpawner0" type="Spatial" parent="Spawners"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="EnemySpawner1" type="Spatial" parent="Spawners"]
 script = ExtResource( 2 )
 lane = 1
 
 [node name="EnemySpawner2" type="Spatial" parent="Spawners"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
-script = ExtResource( 2 )
-
-[node name="EnemySpawner3" type="Spatial" parent="Spawners"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
 script = ExtResource( 2 )
 lane = 2
 
