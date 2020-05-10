@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cart_body_parts.obj-6b8f2fa34b79113069e8211a4dfa6d77.mesh"
+
+[deps]
+
+files=[ "res://.import/cart_body_parts.obj-6b8f2fa34b79113069e8211a4dfa6d77.mesh" ]
+
+source_file="res://scenes/Decorative/cart_body_parts.obj"
+dest_files=[ "res://.import/cart_body_parts.obj-6b8f2fa34b79113069e8211a4dfa6d77.mesh", "res://.import/cart_body_parts.obj-6b8f2fa34b79113069e8211a4dfa6d77.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
